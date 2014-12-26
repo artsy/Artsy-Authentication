@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Artsy_Authentication', :exclusive => true do
+  pod "Artsy_Authentication", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "Artsy_Authentication", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+end
