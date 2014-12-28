@@ -1,43 +1,49 @@
-//
-//  Artsy_AuthenticationTests.m
-//  Artsy_AuthenticationTests
-//
-//  Created by Orta Therox on 12/26/2014.
-//  Copyright (c) 2014 Orta Therox. All rights reserved.
-//
+@import Quick;
+@import Nimble;
+@import Artsy_Authentication;
+@import OHHTTPStubs;
 
-SpecBegin(InitialSpecs)
+@interface ArtsyAuthentication(Tests)
+- (NSURL *)urlWithPath:(NSString *)path;
+- (NSURLRequest *)baseRequestForAddress:(NSString *)address;
+@end
 
-describe(@"these will fail", ^{
+QuickSpecBegin(MainSpec)
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
+describe(@"", ^{
+    __block ArtsyAuthentication *sut = nil;
 
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
-    
-    it(@"will wait and fail", ^AsyncBlock {
-        
+    beforeEach(^{
+        sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+        expect(sut).to( equal(sut) );
     });
 });
 
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
+describe(@"staging / production", ^{
+    it(@"gives production urls by default", ^{
+        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
     });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^AsyncBlock {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            done();
-        });
+
+    it(@"gives staging urls when set", ^{
+        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+        sut.staging = YES;
+        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
     });
 });
 
-SpecEnd
+describe(@"staging / production", ^{
+    it(@"gives production urls by default", ^{
+        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
+    });
+
+    it(@"gives staging urls when set", ^{
+        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+        sut.staging = YES;
+        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
+    });
+});
+
+
+QuickSpecEnd

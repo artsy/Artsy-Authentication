@@ -1,0 +1,43 @@
+PODS:
+  - Artsy+Authentication (1.0.0):
+    - ISO8601DateFormatter
+    - NSURL+QueryDictionary
+  - ISO8601DateFormatter (0.7)
+  - Nimble (0.2.0)
+  - NSURL+QueryDictionary (1.0.3)
+  - OHHTTPStubs (3.1.10):
+    - OHHTTPStubs/Core (= 3.1.10)
+  - OHHTTPStubs/Core (3.1.10)
+  - Quick (0.2.0)
+
+DEPENDENCIES:
+  - Artsy+Authentication (from `../`)
+  - Nimble (from `https://github.com/Quick/Nimble`)
+  - OHHTTPStubs
+  - Quick (from `https://github.com/Quick/Quick`)
+
+EXTERNAL SOURCES:
+  Artsy+Authentication:
+    :path: ../
+  Nimble:
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :git: https://github.com/Quick/Quick
+
+CHECKOUT OPTIONS:
+  Nimble:
+    :commit: 89affdde2b3bc946b4ff33683dc3b573548e9c3c
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :commit: 3f5eb70f2677da0a36e8e84c7c8426730281d8c8
+    :git: https://github.com/Quick/Quick
+
+SPEC CHECKSUMS:
+  Artsy+Authentication: 537eec3a3d80db55bd480db4fc8fbb90ccc6c450
+  ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
+  Nimble: 79679d4cd5a3710db75e1dd9f5479f71842da6a6
+  NSURL+QueryDictionary: 1ad81be60c10e3f4d80c5c4beb7125de96aaec5e
+  OHHTTPStubs: 2038e929b6abb94881000524c1cb4aba0a1bb4a2
+  Quick: fdcce541eb5d73f5ac78f95c770ca6d6d69f0b81
+
+COCOAPODS: 0.36.0.beta.1
