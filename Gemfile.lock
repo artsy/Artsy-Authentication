@@ -1,5 +1,6 @@
-PATH
-  remote: ../../ruby/cocoapods-keys
+GIT
+  remote: https://github.com/orta/cocoapods-keys.git
+  revision: 9107f957bb079cbfa1d4fa27b2d9cb91afc80ec8
   specs:
     cocoapods-keys (1.0.0)
       osx_keychain
