@@ -5,7 +5,7 @@
 
 - (void)logInWithTwitter
 {
-    TRATwitterReverseAuth
+
 }
 
 - (void)createNewUserWithTwitter
