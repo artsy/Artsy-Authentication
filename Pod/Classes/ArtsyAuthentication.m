@@ -1,4 +1,5 @@
 #import "ArtsyAuthentication.h"
+#import "ArtsyAuthentication+Private.h"
 #import "ArtsyToken.h"
 #import "ArtsyAuthenticationRouter.h"
 
@@ -43,10 +44,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
         ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"xapp_token"] expirationDate:date];
-        // TODO: Move this into a private header file so categories can access it. 
-        if (completion) {
-            completion(token, error);
-        }
+        [self callback:token error:error completion:completion];
     }];
 }
 

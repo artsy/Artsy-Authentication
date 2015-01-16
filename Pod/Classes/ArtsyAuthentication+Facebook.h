@@ -2,8 +2,9 @@
 
 typedef void (^ArtsyAuthenticationFailureCallback)(NSError *error);
 
-@interface ArtsyAuthentication(Facebook)
+@interface ArtsyAuthentication (Facebook)
 
-- (void)logInWithFacebook:(ArtsyAuthenticationCallback)callback;
+// TODO: Maybe we can get the appID automatically somehow, like the cocoapods plugins idea Orta had. 
+- (void)logInWithFacebook:(NSString *)appID completion:(ArtsyAuthenticationCallback)callback;
 
 @end
