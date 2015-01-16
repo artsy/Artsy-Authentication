@@ -4,6 +4,8 @@
 
 @import ISO8601DateFormatter;
 
+NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomain";
+
 @interface ArtsyAuthentication()
 @end
 

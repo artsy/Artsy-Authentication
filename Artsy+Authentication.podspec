@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes'
   s.frameworks = 'Foundation'
-  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'TwitterReverseAuth']
+  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'TwitterReverseAuth', 'Facebook-iOS-SDK']
 end

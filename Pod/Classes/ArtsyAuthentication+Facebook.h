@@ -1,8 +1,9 @@
 #import "ArtsyAuthentication.h"
 
+typedef void (^ArtsyAuthenticationFailureCallback)(NSError *error);
+
 @interface ArtsyAuthentication(Facebook)
 
-- (void)logInWithFacebook;
-- (void)createNewUserWithFacebook;
+- (void)logInWithFacebook:(ArtsyAuthenticationCallback)callback;
 
 @end

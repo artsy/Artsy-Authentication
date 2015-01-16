@@ -1,9 +1,13 @@
 PODS:
   - AFNetworking (1.3.4)
   - Artsy+Authentication (1.0.0):
+    - Facebook-iOS-SDK
     - ISO8601DateFormatter
     - NSURL+QueryDictionary
     - TwitterReverseAuth
+  - Bolts (1.1.3)
+  - Facebook-iOS-SDK (3.22.0):
+    - Bolts (~> 1.0)
   - ISO8601DateFormatter (0.7)
   - Nimble (0.2.0)
   - NSURL+QueryDictionary (1.0.3)
@@ -41,7 +45,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  Artsy+Authentication: c0966a959b75bb2b95e5c2ae0d10385655ea81f3
+  Artsy+Authentication: 44772cd3cceeff56d04e8418b4d87fa0145cb4f9
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  Facebook-iOS-SDK: 0eda8ff7120aada0a9c5f98552f7625da6c3440a
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
   Nimble: 79679d4cd5a3710db75e1dd9f5479f71842da6a6
   NSURL+QueryDictionary: 1ad81be60c10e3f4d80c5c4beb7125de96aaec5e
