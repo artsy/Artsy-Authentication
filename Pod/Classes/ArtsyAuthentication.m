@@ -1,8 +1,11 @@
 #import "ArtsyAuthentication.h"
+#import "ArtsyAuthentication+Private.h"
 #import "ArtsyToken.h"
 #import "ArtsyAuthenticationRouter.h"
 
 @import ISO8601DateFormatter;
+
+NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomain";
 
 @interface ArtsyAuthentication()
 @end
@@ -33,7 +36,7 @@
     }];
 }
 
-- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(void (^)(ArtsyToken *token, NSError *error))completion
+- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion
 {
     NSURLRequest *request = [self.router requestForAuthWithEmail:email password:password];
     [self getRequest:request:^(id dict, NSURLResponse *response, NSError *error) {
@@ -41,7 +44,7 @@
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
         ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"xapp_token"] expirationDate:date];
-        completion(token, error);
+        [self callback:token error:error completion:completion];
     }];
 }
 

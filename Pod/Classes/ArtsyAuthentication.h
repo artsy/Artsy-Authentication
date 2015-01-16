@@ -1,6 +1,10 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+extern NSString* const ArtsyAuthenticationErrorDomain;
 
 @class ArtsyToken, ArtsyAuthenticationRouter;
+
+typedef void (^ArtsyAuthenticationCallback)(ArtsyToken *token, NSError *error);
 
 @interface ArtsyAuthentication : NSObject
 
@@ -11,7 +15,7 @@
 - (void)getWeekLongXAppTrialToken:(void (^)(ArtsyToken *token, NSError *error))completion;
 
 /// Gets a 35 year-long authenticated token, nil if network errors
-- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(void (^)(ArtsyToken *token, NSError *error))completion;
+- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion;
 
 /// Creates a new user, or fails
 - (void)createUserWithUserDictionary:(NSDictionary *)dictionary :(void (^)(NSDictionary *newUserDictionary, NSError *error))completion;
