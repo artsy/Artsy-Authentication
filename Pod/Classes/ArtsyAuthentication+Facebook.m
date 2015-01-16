@@ -40,7 +40,7 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
         if (responseData == nil || error || urlResponse.statusCode != 200) {
             [strongSelf callback:nil error:error completion:callback];
         } else {
-            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:nil error:nil];
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
 
             NSString *facebookToken = facebookAccount.credential.oauthToken;
             NSString *email = responseDictionary[@"email"];
@@ -64,7 +64,6 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
 
     NSArray *permissions = @[@"email"];
     NSDictionary *facebookOptions = @{ACFacebookAppIdKey : appID,
-                                      ACFacebookAudienceKey :  ACFacebookAudienceFriends,
                                       ACFacebookPermissionsKey : permissions};
 
 
