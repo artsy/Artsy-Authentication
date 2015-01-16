@@ -51,7 +51,7 @@
 }
 
 - (void)loginToArtsyWithFacebookToken:(NSString *)token email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
-
+    // TODO: This method. 🚢
 }
 
 @end

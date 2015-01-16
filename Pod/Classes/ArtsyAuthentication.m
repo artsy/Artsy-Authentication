@@ -35,7 +35,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     }];
 }
 
-- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(void (^)(ArtsyToken *token, NSError *error))completion
+- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion
 {
     NSURLRequest *request = [self.router requestForAuthWithEmail:email password:password];
     [self getRequest:request:^(id dict, NSURLResponse *response, NSError *error) {
@@ -43,7 +43,10 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
         ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"xapp_token"] expirationDate:date];
-        completion(token, error);
+        // TODO: Move this into a private header file so categories can access it. 
+        if (completion) {
+            completion(token, error);
+        }
     }];
 }
 
