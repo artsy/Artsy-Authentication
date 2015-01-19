@@ -10,6 +10,12 @@
 
 const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
 
+typedef void (^_ArtsyFacebookAuthenticationCallback)(NSString *facebookToken, NSString *email, NSString *name, NSError *error);
+
+NSString *facebookAppID() {
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"];
+}
+
 @interface ArtsyAuthentication (Facebook_Private)
 
 @property (nonatomic, readonly) ACAccountStore *facebookAccountStore;
@@ -31,17 +37,16 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
     return accountStore;
 }
 
-- (void)retrieveFacebookAccountInformation:(ACAccount *)facebookAccount completion:(ArtsyAuthenticationCallback)callback {
+- (void)retrieveFacebookAccountInformation:(ACAccount *)facebookAccount completion:(_ArtsyFacebookAuthenticationCallback)callback {
     NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me"];
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:url parameters:nil];
     request.account = facebookAccount;
 
-    __weak __typeof(self) weakSelf = self;
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-
         if (responseData == nil || error || urlResponse.statusCode != 200) {
-            [strongSelf callback:nil error:error completion:callback];
+            if (callback) {
+                callback(nil, nil, nil, error);
+            }
         } else {
             NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
 
@@ -49,12 +54,14 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
             NSString *email = responseDictionary[@"email"];
             NSString *name = responseDictionary[@"name"];
 
-            [strongSelf loginToArtsyWithFacebookToken:facebookToken email:email name:name completion:callback];
+            if (callback) {
+                callback(facebookToken, email, name, nil);
+            }
         }
     }];
 }
 
-- (void)loginToArtsyWithFacebookToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
+- (void)loginToArtsyWithFacebookToken:(NSString *)facebookToken completion:(ArtsyAuthenticationCallback)callback {
    NSURLRequest *request = [self.router newFacebookOAuthRequestWithToken:facebookToken];
 
     __weak __typeof(self) weakSelf = self;
@@ -85,24 +92,24 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
     [op start];
 }
 
-@end
+- (void)createArtsyUserWithFacebookToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
+    __weak __typeof(self) weakSelf = self;
+    NSURLRequest *request = [self.router newCreateUserViaFacebookRequestWithToken:facebookToken email:email name:name];
 
-@implementation ArtsyAuthentication (Facebook)
+    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+        success:^(NSURLRequest *oauthRequest, NSHTTPURLResponse *response, id JSON) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-- (void)logInWithFacebook:(ArtsyAuthenticationCallback)callback {
+            [strongSelf loginToArtsyWithFacebookToken:facebookToken completion:callback];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-    NSString *appID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"];
-
-    if (appID) {
-        [self logInWithFacebook:appID completion:callback];
-    } else {
-        NSError *error = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorNoFacebookAppID userInfo:nil];
-
-        [self callback:nil error:error completion:callback];
-    }
+            [strongSelf callback:nil error:error completion:callback];
+        }];
+    [op start];
 }
 
-- (void)logInWithFacebook:(NSString *)appID completion:(ArtsyAuthenticationCallback)callback {
+- (void)accessFacebookAccount:(NSString *)appID completion:(_ArtsyFacebookAuthenticationCallback)callback {
     __weak __typeof(self) weakSelf = self;
 
     NSArray *permissions = @[@"email"];
@@ -121,7 +128,65 @@ const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
 
             [strongSelf retrieveFacebookAccountInformation:facebookAccount completion:callback];
         } else {
-            [strongSelf callback:nil error:error completion:callback];
+            if (callback) {
+                callback(nil, nil, nil, error);
+            }
+        }
+    }];
+}
+
+@end
+
+@implementation ArtsyAuthentication (Facebook)
+
+- (void)logInWithFacebook:(ArtsyAuthenticationCallback)callback {
+    NSString *appID = facebookAppID();
+
+    if (appID) {
+        [self logInWithFacebook:appID completion:callback];
+    } else {
+        NSError *error = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorNoFacebookAppID userInfo:nil];
+
+        [self callback:nil error:error completion:callback];
+    }
+}
+
+- (void)logInWithFacebook:(NSString *)appID completion:(ArtsyAuthenticationCallback)callback {
+    __weak __typeof(self) weakSelf = self;
+
+    [self accessFacebookAccount:appID completion:^(NSString *facebookToken, NSString *email, NSString *name, NSError *error) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+        if (facebookToken && name && email && !error) {
+            [strongSelf loginToArtsyWithFacebookToken:facebookToken completion:callback];
+        } else {
+            callback(nil, error);
+        }
+    }];
+}
+
+- (void)createUserWithFacebook:(ArtsyAuthenticationCallback)callback {
+    NSString *appID = facebookAppID();
+
+    if (appID) {
+        [self createUserWithFacebook:appID completion:callback];
+    } else {
+        NSError *error = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorNoFacebookAppID userInfo:nil];
+
+        [self callback:nil error:error completion:callback];
+    }
+}
+
+- (void)createUserWithFacebook:(NSString *)appID completion:(ArtsyAuthenticationCallback)callback {
+    __weak __typeof(self) weakSelf = self;
+
+    [self accessFacebookAccount:appID completion:^(NSString *facebookToken, NSString *email, NSString *name, NSError *error) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+        if (facebookToken && name && email && !error) {
+            [strongSelf createArtsyUserWithFacebookToken:facebookToken email:email name:name completion:callback];
+        } else {
+            callback(nil, error);
         }
     }];
 }

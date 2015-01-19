@@ -5,8 +5,8 @@
 
 @import ISO8601DateFormatter;
 
-NSString* const ArtsyOAuthTokenKey = @"expires_in";
-NSString* const ArtsyOAuthExpiryKey = @"access_token";
+NSString* const ArtsyOAuthTokenKey = @"access_token";
+NSString* const ArtsyOAuthExpiryKey = @"expires_in";
 
 NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomain";
 
@@ -29,24 +29,37 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
 
 - (void)getWeekLongXAppTrialToken:(void (^)(ArtsyToken *token, NSError *error))completion
 {
+    __weak __typeof(self) weakSelf = self;
+
     NSURLRequest *request = [self.router requestForXapp];
     [self getRequest:request:^(id dict, NSURLResponse *response, NSError *error) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+
         [self findErrorsInResponse:(NSHTTPURLResponse *)response error:&error dict:dict];
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
-        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"access_token"] expirationDate:date];
+        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"xapp_token"] expirationDate:date];
+
+        strongSelf.router.xappToken = token;
+
         completion(token, error);
     }];
 }
 
 - (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion
 {
+    __weak __typeof(self) weakSelf = self;
+
     NSURLRequest *request = [self.router requestForAuthWithEmail:email password:password];
     [self getRequest:request:^(id dict, NSURLResponse *response, NSError *error) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         [self findErrorsInResponse:(NSHTTPURLResponse *)response error:&error dict:dict];
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
-        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"xapp_token"] expirationDate:date];
+        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"access_token"] expirationDate:date];
+
+        strongSelf.router.authToken = token;
+
         [self callback:token error:error completion:completion];
     }];
 }
@@ -81,6 +94,10 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     }];
 
     [task resume];
+}
+
+- (void)logout {
+    self.router.authToken = nil;
 }
 
 @end

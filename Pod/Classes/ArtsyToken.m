@@ -42,8 +42,21 @@
     return [self.expirationDate earlierDate:date];
 }
 
+- (BOOL)isEmpty {
+    return self.token.length < 1;
+}
+
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Artsy authentication token %p expires: %@", self, self.expirationDate];
+    NSString *empty = @"non-empty";
+    if (self.empty) {
+        empty = @"empty";
+    }
+
+    return [NSString stringWithFormat:@"Artsy authentication token (%@) %p expires: %@", empty, self, self.expirationDate];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return [[ArtsyToken allocWithZone:zone] initWithToken:self.token expirationDate:self.expirationDate];
 }
 
 @end

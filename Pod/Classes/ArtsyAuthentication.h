@@ -25,6 +25,9 @@ typedef void (^ArtsyAuthenticationCallback)(ArtsyToken *token, NSError *error);
 /// Creates a new user, or fails
 - (void)createUserWithUserDictionary:(NSDictionary *)dictionary :(void (^)(NSDictionary *newUserDictionary, NSError *error))completion;
 
+/// Clears any user auth token from the router.
+- (void)logout;
+
 /// Use Stubbed data
 @property (nonatomic, assign, readwrite) BOOL stubbedData;
 
