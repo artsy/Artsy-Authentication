@@ -22,16 +22,11 @@
     auth.router.staging = YES;
     self.auth = auth;
 
-    NSString *facebookAppID = keys.artsyFacebookStagingToken;
+    NSString *facebookAppID = keys.artsyFacebookAppID;
 
     NSLog(@"Getting Xapp token.");
     [auth getWeekLongXAppTrialToken:^(ArtsyToken *token, NSError *error) {
         NSLog(@"Retrieved Xapp token: %@", token);
-
-        if (token.empty) {
-            NSLog(@"Retrieved empty Xapp token. Aborting.");
-            abort();
-        }
 
         NSLog(@"Logging in with Facebook.");
         [auth logInWithFacebook:facebookAppID completion:^(ArtsyToken *token, NSError *error) {
