@@ -1,6 +1,7 @@
 PODS:
   - AFNetworking (1.3.4)
   - Artsy+Authentication (1.0.0):
+    - AFNetworking
     - ISO8601DateFormatter
     - NSURL+QueryDictionary
     - TwitterReverseAuth
@@ -41,7 +42,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  Artsy+Authentication: c59e8dc04b2f28892185a663768437baa887bab7
+  Artsy+Authentication: c94281214297a01a53c3fbe17627578dd110c34f
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
   Nimble: 79679d4cd5a3710db75e1dd9f5479f71842da6a6
   NSURL+QueryDictionary: 1ad81be60c10e3f4d80c5c4beb7125de96aaec5e

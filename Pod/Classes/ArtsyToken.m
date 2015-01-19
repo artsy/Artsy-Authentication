@@ -42,5 +42,8 @@
     return [self.expirationDate earlierDate:date];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Artsy authentication token %p expires: %@", self, self.expirationDate];
+}
 
 @end

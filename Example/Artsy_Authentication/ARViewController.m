@@ -27,6 +27,8 @@
         [auth logInWithFacebook:keys.artsyFacebookStagingToken completion:^(ArtsyToken *token, NSError *error) {
             if (error) {
                 NSLog(@"Error: %@", error);
+            } else if (token) {
+                NSLog(@"Retrieved ArtsyToken: %@", token);
             }
         }];
     }];

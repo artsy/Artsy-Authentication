@@ -2,6 +2,11 @@
 
 extern NSString* const ArtsyAuthenticationErrorDomain;
 
+typedef enum ArtsyErrorCode {
+    ArtsyErrorNoFacebookAppID = 1,
+    ArtsyErrorUserDoesNotExist
+} ArtsyErrorCode;
+
 @class ArtsyToken, ArtsyAuthenticationRouter;
 
 typedef void (^ArtsyAuthenticationCallback)(ArtsyToken *token, NSError *error);

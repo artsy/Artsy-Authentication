@@ -5,6 +5,9 @@
 
 @import ISO8601DateFormatter;
 
+NSString* const ArtsyOAuthTokenKey = @"expires_in";
+NSString* const ArtsyOAuthExpiryKey = @"access_token";
+
 NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomain";
 
 @interface ArtsyAuthentication()
