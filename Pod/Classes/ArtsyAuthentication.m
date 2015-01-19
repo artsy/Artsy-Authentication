@@ -57,7 +57,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
         [self findErrorsInResponse:(NSHTTPURLResponse *)response error:&error dict:dict];
 
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:dict[@"expires_in"]];
-        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[@"access_token"] expirationDate:date];
+        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:dict[ArtsyOAuthTokenKey] expirationDate:date];
 
         strongSelf.router.authToken = token;
 
