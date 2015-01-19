@@ -2,7 +2,6 @@
 #import "ArtsyAuthentication+Private.h"
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyToken.h"
-#import <AFNetworking/AFNetworking.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
@@ -62,51 +61,47 @@ NSString *facebookAppID() {
 }
 
 - (void)loginToArtsyWithFacebookToken:(NSString *)facebookToken completion:(ArtsyAuthenticationCallback)callback {
-   NSURLRequest *request = [self.router newFacebookOAuthRequestWithToken:facebookToken];
-
     __weak __typeof(self) weakSelf = self;
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-        success:^(NSURLRequest *oauthRequest, NSHTTPURLResponse *response, id JSON) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-            NSString *token = JSON[ArtsyOAuthTokenKey];
-            NSString *expiryDateString = JSON[ArtsyOAuthExpiryKey];
-            ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
-            NSDate *expiryDate = [dateFormatter dateFromString:expiryDateString];
+    NSURLRequest *request = [self.router newFacebookOAuthRequestWithToken:facebookToken];
 
-            ArtsyToken *artsyToken = [[ArtsyToken alloc] initWithToken:token expirationDate:expiryDate];
+    [self JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        NSString *token = JSON[ArtsyOAuthTokenKey];
+        NSString *expiryDateString = JSON[ArtsyOAuthExpiryKey];
+        ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
+        NSDate *expiryDate = [dateFormatter dateFromString:expiryDateString];
 
-            [strongSelf callback:artsyToken error:nil completion:callback];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
+        ArtsyToken *artsyToken = [[ArtsyToken alloc] initWithToken:token expirationDate:expiryDate];
 
-            // This case handles a 401 from Artsy's server, which means the Facebook account is not associated with a user.
-            if (response.statusCode == 401) {
-                NSError *artsyError = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorUserDoesNotExist userInfo:@{ NSUnderlyingErrorKey : error }];
+        [strongSelf callback:artsyToken error:nil completion:callback];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        // This case handles a 401 from Artsy's server, which means the Facebook account is not associated with a user.
+        if (response.statusCode == 401) {
+            NSError *artsyError = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorUserDoesNotExist userInfo:@{ NSUnderlyingErrorKey : error }];
 
-                [strongSelf callback:nil error:artsyError completion:callback];
-            } else {
-                [strongSelf callback:nil error:error completion:callback];
-            }
-        }];
-    [op start];
+            [strongSelf callback:nil error:artsyError completion:callback];
+        } else {
+            [strongSelf callback:nil error:error completion:callback];
+        }
+    }];
 }
 
 - (void)createArtsyUserWithFacebookToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
     __weak __typeof(self) weakSelf = self;
+
     NSURLRequest *request = [self.router newCreateUserViaFacebookRequestWithToken:facebookToken email:email name:name];
 
-    AFJSONRequestOperation *op = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-        success:^(NSURLRequest *oauthRequest, NSHTTPURLResponse *response, id JSON) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
+    [self JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-            [strongSelf loginToArtsyWithFacebookToken:facebookToken completion:callback];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf loginToArtsyWithFacebookToken:facebookToken completion:callback];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-            [strongSelf callback:nil error:error completion:callback];
-        }];
-    [op start];
+        [strongSelf callback:nil error:error completion:callback];
+    }];
 }
 
 - (void)accessFacebookAccount:(NSString *)appID completion:(_ArtsyFacebookAuthenticationCallback)callback {

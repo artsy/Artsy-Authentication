@@ -44,7 +44,9 @@
                 } else {
                     NSLog(@"Error logging in: %@", error);
                 }
-            } else if (token) {
+            }
+
+            if (token) {
                 NSLog(@"Retrieved ArtsyToken: %@", token);
             }
         }];

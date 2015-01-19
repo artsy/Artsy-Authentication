@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes'
   s.private_header_files = 'Pod/Classes/*Private.h'
   s.frameworks = 'Foundation', 'Social', 'Accounts'
-  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'TwitterReverseAuth', 'AFNetworking']
+  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'TwitterReverseAuth']
 end
