@@ -2,14 +2,14 @@ language: objective-c
 osx_image: xcode611
 before_install: 
   - bundle install
-  - make keys
+  - cd Example ; make keys ; cd ..
 before_script:
   - export LANG=en_US.UTF-8
   - brew update
   - brew uninstall xctool
   - brew install xctool
 install: 
-  - cd Example ; bundle exec pod install; cd ..
+  - cd Example ; make install ; cd ..
 xcode_workspace: Example/Artsy_Authentication.xcworkspace
 xcode_scheme: Artsy_Authentication-Example
 xcode_sdk: iphonesimulator
