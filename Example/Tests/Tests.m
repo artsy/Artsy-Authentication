@@ -17,33 +17,37 @@ describe(@"", ^{
         sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
         expect(sut).to( equal(sut) );
     });
-});
 
-describe(@"staging / production", ^{
-    it(@"gives production urls by default", ^{
-        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
-        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
-    });
-
-    it(@"gives staging urls when set", ^{
-        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
-        sut.staging = YES;
-        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
+    it(@"fails", ^{
+        expect(@YES).to(beFalsy());
     });
 });
 
-describe(@"staging / production", ^{
-    it(@"gives production urls by default", ^{
-        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
-        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
-    });
-
-    it(@"gives staging urls when set", ^{
-        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
-        sut.staging = YES;
-        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
-    });
-});
+//describe(@"staging / production", ^{
+//    it(@"gives production urls by default", ^{
+//        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+//        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
+//    });
+//
+//    it(@"gives staging urls when set", ^{
+//        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+//        sut..staging = YES;
+//        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
+//    });
+//});
+//
+//describe(@"staging / production", ^{
+//    it(@"gives production urls by default", ^{
+//        id sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+//        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api.artsy.net/api/hi") );
+//    });
+//
+//    it(@"gives staging urls when set", ^{
+//        ArtsyAuthentication *sut = [[ArtsyAuthentication alloc] initWithClientID:@"" clientSecret:@""];
+//        sut.staging = YES;
+//        expect([sut urlWithPath:@"/api/hi"].absoluteString).to( equal(@"https://api-staging.artsy.net/api/hi") );
+//    });
+//});
 
 
 QuickSpecEnd
