@@ -7,7 +7,7 @@
 #import <objc/runtime.h>
 #import "TestingNetworkOperator.h"
 
-extern const void* ArtsyFacebookAccountStoreKey;
+extern const void* ArtsyAccountStoreKey;
 
 @interface ArtsyAuthentication(Test)
 
@@ -54,7 +54,7 @@ describe(@"an authentication object", ^{
     beforeEach(^{
         sut = [[StubbedAuthenticator alloc] initWithClientID:clientID clientSecret:clientSecret];
         TestingAccountStore *accountStore = [[TestingAccountStore alloc] init];
-        objc_setAssociatedObject(sut, ArtsyFacebookAccountStoreKey, accountStore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(sut, ArtsyAccountStoreKey, accountStore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
 
     it(@"logs in with Facebook", ^{

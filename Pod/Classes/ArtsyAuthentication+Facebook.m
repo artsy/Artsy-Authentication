@@ -6,9 +6,6 @@
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
-#import <objc/runtime.h>
-
-const void* ArtsyFacebookAccountStoreKey = &ArtsyFacebookAccountStoreKey;
 
 typedef void (^_ArtsyFacebookAuthenticationCallback)(NSString *facebookToken, NSString *email, NSString *name, NSError *error);
 
@@ -17,25 +14,9 @@ NSString *facebookAppID() {
 }
 
 @interface ArtsyAuthentication (Facebook_Private)
-
-@property (nonatomic, readonly) ACAccountStore *facebookAccountStore;
-
 @end
 
 @implementation ArtsyAuthentication (Facebook_Private)
-
-- (ACAccountStore *)facebookAccountStore {
-    ACAccountStore *accountStore = objc_getAssociatedObject(self, ArtsyFacebookAccountStoreKey);
-
-    if (!accountStore) {
-        // This must be around at least as long as we are.
-        accountStore = [[ACAccountStore alloc] init];
-
-        objc_setAssociatedObject(self, ArtsyFacebookAccountStoreKey, accountStore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-
-    return accountStore;
-}
 
 - (SLRequest *)requestForMe:(ACAccount *)facebookAccount {
     NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me"];
@@ -123,13 +104,13 @@ NSString *facebookAppID() {
                                       ACFacebookPermissionsKey : permissions};
 
 
-    ACAccountType *accountType = [self.facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    ACAccountType *accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
 
-    [self.facebookAccountStore requestAccessToAccountsWithType:accountType options:facebookOptions completion:^(BOOL granted, NSError *error) {
+    [self.accountStore requestAccessToAccountsWithType:accountType options:facebookOptions completion:^(BOOL granted, NSError *error) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
         if (granted) {
-            NSArray *accounts = [self.facebookAccountStore accountsWithAccountType:accountType];
+            NSArray *accounts = [self.accountStore accountsWithAccountType:accountType];
             ACAccount *facebookAccount = accounts.lastObject;
 
             [strongSelf retrieveFacebookAccountInformation:facebookAccount completion:callback];

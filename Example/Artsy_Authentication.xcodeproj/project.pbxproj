@@ -10,6 +10,7 @@
 		5E445A961A6FF103009712CA /* TestingNetworkOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A951A6FF103009712CA /* TestingNetworkOperator.m */; };
 		5E445A991A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */; };
 		5E445A9B1A6FFC9C009712CA /* ArtsyAuthenticationTests+Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A9A1A6FFC9C009712CA /* ArtsyAuthenticationTests+Facebook.m */; };
+		5E445A9D1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A9C1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m */; };
 		5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */; };
 		5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */; };
 		5EE2A58678EA720783167420 /* Pods_Artsy_Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -49,6 +50,7 @@
 		5E445A951A6FF103009712CA /* TestingNetworkOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingNetworkOperator.m; sourceTree = "<group>"; };
 		5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyNetworkOperatorTests.m; sourceTree = "<group>"; };
 		5E445A9A1A6FFC9C009712CA /* ArtsyAuthenticationTests+Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArtsyAuthenticationTests+Facebook.m"; sourceTree = "<group>"; };
+		5E445A9C1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArtsyAuthenticationTests+Twitter.m"; sourceTree = "<group>"; };
 		5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyTokenTests.m; sourceTree = "<group>"; };
 		5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyAuthenticationTests.m; sourceTree = "<group>"; };
 		5FAFA31DF0D63E2B5A77930D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */,
 				5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */,
 				5E445A9A1A6FFC9C009712CA /* ArtsyAuthenticationTests+Facebook.m */,
+				5E445A9C1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m */,
 				5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -431,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BC195388D20070C39A /* ArtsyAuthenticationRouterTests.m in Sources */,
+				5E445A9D1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m in Sources */,
 				5E445A991A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m in Sources */,
 				5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */,
 				5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */,
