@@ -4,17 +4,12 @@
 @import NSURL_QueryDictionary;
 
 @interface ArtsyAuthenticationRouter()
-@property (readonly, nonatomic, copy) NSString *clientID;
-@property (readonly, nonatomic, copy) NSString *clientSecret;
 
-@property (readonly, nonatomic, copy) ArtsyToken *xappToken;
-@property (readonly, nonatomic, copy) ArtsyToken *authToken;
 @end
 
 @implementation ArtsyAuthenticationRouter
 
-- (instancetype)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret;
-{
+- (instancetype)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret {
     self = [super init];
     if (!self) return nil;
 
@@ -26,23 +21,27 @@
 
 #pragma mark - NSURLRequests for calls
 
-- (NSURL *)urlWithPath:(NSString *)path
-{
-    NSString *base = self.staging ? @"https://api-staging.artsy.net" : @"https://api.artsy.net";
+- (NSURL *)urlWithPath:(NSString *)path {
+    NSString *base = self.staging ? @"https://stagingapi.artsy.net" : @"https://api.artsy.net";
     return [NSURL URLWithString:path relativeToURL:[NSURL URLWithString:base]];
 }
 
-- (NSURLRequest *)baseRequestForAddress:(NSURL *)url
-{
+- (NSURLRequest *)baseRequestForAddress:(NSURL *)url method:(NSString *)httpMethod {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = httpMethod;
+
     if (self.xappToken) {
-        [request setValue:@"X-Xapp-Token" forHTTPHeaderField:self.xappToken.token];
+        [request setValue:self.xappToken.token forHTTPHeaderField:@"X-Xapp-Token"];
     }
+    
     return [request copy];
 }
 
-- (NSURLRequest *)requestForAuthWithEmail:(NSString *)email password:(NSString *)password
-{
+- (NSURLRequest *)baseRequestForAddress:(NSURL *)url {
+    return [self baseRequestForAddress:url method:@"GET"];
+}
+
+- (NSURLRequest *)requestForAuthWithEmail:(NSString *)email password:(NSString *)password {
     NSDictionary *params = @{
         @"email" : email,
         @"password" : password,
@@ -56,11 +55,23 @@
     return [self baseRequestForAddress:url];
 }
 
-- (NSURLRequest *)newFacebookOAuthRequestWithToken:(NSString *)token
-{
+- (NSURLRequest *)newCreateUserViaFacebookRequestWithToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name {
+    NSDictionary *params = @{
+        @"provider": @"facebook",
+        @"oauth_token": facebookToken,
+        @"email" : email,
+        @"name" : name
+    };
+
+    NSURL *url = [[self urlWithPath:@"/api/v1/user"] uq_URLByAppendingQueryDictionary:params];
+    return [self baseRequestForAddress:url method:@"POST"];
+}
+
+
+- (NSURLRequest *)newFacebookOAuthRequestWithToken:(NSString *)facebookToken {
     NSDictionary *params = @{
         @"oauth_provider" : @"facebook",
-        @"oauth_token" : token,
+        @"oauth_token" : facebookToken,
         @"client_id" : self.clientID,
         @"client_secret" : self.clientSecret,
         @"grant_type" : @"oauth_token",
@@ -71,8 +82,7 @@
     return [self baseRequestForAddress:url];
 }
 
-- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token andSecret:(NSString *)secret
-{
+- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token andSecret:(NSString *)secret {
     NSDictionary *params = @{
         @"oauth_provider" : @"twitter",
         @"oauth_token" : token,
@@ -87,8 +97,7 @@
     return [self baseRequestForAddress:url];
 }
 
-- (NSURLRequest *)requestForXapp
-{
+- (NSURLRequest *)requestForXapp {
     NSDictionary *params = @{
         @"client_id" : self.clientID,
         @"client_secret" : self.clientSecret

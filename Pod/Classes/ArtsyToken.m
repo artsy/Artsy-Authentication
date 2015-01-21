@@ -39,8 +39,24 @@
 
 - (BOOL)hasExpiredWithDate:(NSDate *)date
 {
-    return [self.expirationDate earlierDate:date];
+    return [self.expirationDate compare:date] == NSOrderedAscending;
 }
 
+- (BOOL)isEmpty {
+    return self.token.length < 1;
+}
+
+- (NSString *)description {
+    NSString *empty = @"non-empty";
+    if (self.empty) {
+        empty = @"empty";
+    }
+
+    return [NSString stringWithFormat:@"Artsy authentication token (%@) %p expires: %@", empty, self, self.expirationDate];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return [[ArtsyToken allocWithZone:zone] initWithToken:self.token expirationDate:self.expirationDate];
+}
 
 @end
