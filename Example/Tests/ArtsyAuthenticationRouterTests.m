@@ -2,7 +2,6 @@
 @import Nimble;
 @import Artsy_Authentication;
 @import NSURL_QueryDictionary;
-@import OHHTTPStubs;
 
 @interface ArtsyAuthenticationRouter(Tests)
 
@@ -17,7 +16,7 @@ QuickSpecBegin(ArtsyAuthenticationRouterSpec)
 describe(@"a router", ^{
     NSString *clientID = @"Art5y";
     NSString *clientSecret = @"IActuallyLikeWineCoolers";
-    NSString *xappToken = @"";
+    NSString *xappToken = @"is_it_exapp_or_zapp";
     NSDate *tokenExpirationDate = [NSDate distantFuture];
 
     __block ArtsyAuthenticationRouter *sut = nil;

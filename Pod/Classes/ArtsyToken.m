@@ -39,7 +39,7 @@
 
 - (BOOL)hasExpiredWithDate:(NSDate *)date
 {
-    return [self.expirationDate earlierDate:date];
+    return [self.expirationDate compare:date] == NSOrderedAscending;
 }
 
 - (BOOL)isEmpty {
