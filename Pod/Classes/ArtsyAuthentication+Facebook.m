@@ -1,6 +1,7 @@
 #import "ArtsyAuthentication+Facebook.h"
 #import "ArtsyAuthentication+Private.h"
 #import "ArtsyAuthenticationRouter.h"
+#import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import <Social/Social.h>
@@ -65,7 +66,7 @@ NSString *facebookAppID() {
 
     NSURLRequest *request = [self.router newFacebookOAuthRequestWithToken:facebookToken];
 
-    [self JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         NSString *token = JSON[ArtsyOAuthTokenKey];
         NSString *expiryDateString = JSON[ArtsyOAuthExpiryKey];
@@ -93,7 +94,7 @@ NSString *facebookAppID() {
 
     NSURLRequest *request = [self.router newCreateUserViaFacebookRequestWithToken:facebookToken email:email name:name];
 
-    [self JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
         [strongSelf loginToArtsyWithFacebookToken:facebookToken completion:callback];

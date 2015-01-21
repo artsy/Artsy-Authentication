@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E445A961A6FF103009712CA /* TestingNetworkOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A951A6FF103009712CA /* TestingNetworkOperator.m */; };
+		5E445A991A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */; };
+		5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */; };
+		5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */; };
 		5EE2A58678EA720783167420 /* Pods_Artsy_Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -40,6 +44,11 @@
 		0EE7ED2894CD6CCBB70FB624 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2FD6D890C0BA1DF8CF697295 /* Artsy+Authentication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "Artsy+Authentication.podspec"; path = "../Artsy+Authentication.podspec"; sourceTree = "<group>"; };
 		43F67CD4C2B0A2061B14D96A /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E445A941A6FF103009712CA /* TestingNetworkOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingNetworkOperator.h; sourceTree = "<group>"; };
+		5E445A951A6FF103009712CA /* TestingNetworkOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingNetworkOperator.m; sourceTree = "<group>"; };
+		5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyNetworkOperatorTests.m; sourceTree = "<group>"; };
+		5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyTokenTests.m; sourceTree = "<group>"; };
+		5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyAuthenticationTests.m; sourceTree = "<group>"; };
 		5FAFA31DF0D63E2B5A77930D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Artsy_Authentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artsy_Authentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E445A971A6FF112009712CA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5E445A941A6FF103009712CA /* TestingNetworkOperator.h */,
+				5E445A951A6FF103009712CA /* TestingNetworkOperator.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +178,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5E445A971A6FF112009712CA /* Utilities */,
 				6003F5BB195388D20070C39A /* ArtsyAuthenticationRouterTests.m */,
+				5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */,
+				5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */,
+				5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -406,6 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BC195388D20070C39A /* ArtsyAuthenticationRouterTests.m in Sources */,
+				5E445A991A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m in Sources */,
+				5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */,
+				5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */,
+				5E445A961A6FF103009712CA /* TestingNetworkOperator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
