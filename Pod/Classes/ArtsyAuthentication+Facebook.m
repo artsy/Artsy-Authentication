@@ -37,10 +37,16 @@ NSString *facebookAppID() {
     return accountStore;
 }
 
-- (void)retrieveFacebookAccountInformation:(ACAccount *)facebookAccount completion:(_ArtsyFacebookAuthenticationCallback)callback {
+- (SLRequest *)requestForMe:(ACAccount *)facebookAccount {
     NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me"];
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:url parameters:nil];
     request.account = facebookAccount;
+
+    return request;
+}
+
+- (void)retrieveFacebookAccountInformation:(ACAccount *)facebookAccount completion:(_ArtsyFacebookAuthenticationCallback)callback {
+    SLRequest *request = [self requestForMe:facebookAccount];
 
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         if (responseData == nil || error || urlResponse.statusCode != 200) {
@@ -80,7 +86,11 @@ NSString *facebookAppID() {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         // This case handles a 401 from Artsy's server, which means the Facebook account is not associated with a user.
         if (response.statusCode == 401) {
-            NSError *artsyError = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorUserDoesNotExist userInfo:@{ NSUnderlyingErrorKey : error }];
+            NSDictionary *userInfo;
+            if (error) {
+                userInfo = @{ NSUnderlyingErrorKey : error };
+            }
+            NSError *artsyError = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorUserDoesNotExist userInfo:userInfo];
 
             [strongSelf callback:nil error:artsyError completion:callback];
         } else {
