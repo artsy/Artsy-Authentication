@@ -2,7 +2,6 @@
 #import <Accounts/Accounts.h>
 
 typedef void (^ArtsyTwitterAccountsCallback)(NSArray *accounts, NSError *error);
-typedef void (^ArtsyTwitterAccountsCallback)(NSArray *accounts, NSError *error);
 
 @interface ArtsyAuthentication(Twitter)
 
