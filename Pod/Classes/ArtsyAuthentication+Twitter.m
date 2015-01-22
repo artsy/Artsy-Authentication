@@ -3,8 +3,8 @@
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
-@import TwitterReverseAuth;
-@import ISO8601DateFormatter;
+#import <TwitterReverseAuth/TwitterReverseAuth.h>
+#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import <objc/runtime.h>
 
 typedef void (^_ArtsyTwitterAuthenticationCallback)(NSString *oauthToken, NSString *oauthSecret, NSString *twitterUsername, NSError *error);

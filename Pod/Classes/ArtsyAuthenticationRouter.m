@@ -1,7 +1,6 @@
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyToken.h"
-
-@import NSURL_QueryDictionary;
+#import <NSURL+QueryDictionary/NSURL+QueryDictionary.h>
 
 @interface ArtsyAuthenticationRouter()
 

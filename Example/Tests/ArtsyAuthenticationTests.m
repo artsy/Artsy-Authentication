@@ -56,7 +56,7 @@ describe(@"an authentication object", ^{
         };
         sut.networkOperator = [[TestingNetworkOperator alloc] initWithResponse:nil JSON:JSON error:nil];
 
-        [sut getUserApplicationXAccessTokenWithEmail:@"" password:@"" :^(ArtsyToken *token, NSError *error) {
+        [sut logInWithEmail:@"" password:@"" completion:^(ArtsyToken *token, NSError *error) {
             expect(token.token).to( equal(tokenString) );
             expect(token.expirationDate).to( equal(expiryDate) );
         }];

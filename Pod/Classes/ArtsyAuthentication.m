@@ -3,8 +3,7 @@
 #import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
 #import "ArtsyAuthenticationRouter.h"
-
-@import ISO8601DateFormatter;
+#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
 NSString* const ArtsyOAuthTokenKey = @"access_token";
 NSString* const ArtsyOAuthExpiryKey = @"expires_in";
