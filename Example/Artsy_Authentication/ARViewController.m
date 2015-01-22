@@ -24,7 +24,7 @@
     auth.twitterAPISecret = self.keys.artsyTwitterSecret;
     self.auth = auth;
 
-    [self doArtsy];
+//    [self doArtsy];
 }
 
 - (void)doArtsy {
