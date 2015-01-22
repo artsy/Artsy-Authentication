@@ -23,7 +23,7 @@ typedef void (^ArtsyAuthenticationCallback)(ArtsyToken *token, NSError *error);
 - (void)logInWithEmail:(NSString *)email password:(NSString *)password completion:(ArtsyAuthenticationCallback)completion;
 
 /// Creates a new user, or fails
-- (void)createUserWithUserDictionary:(NSDictionary *)dictionary :(void (^)(NSDictionary *newUserDictionary, NSError *error))completion;
+- (void)createUserWithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password completion:(void (^)(NSDictionary *newUserDictionary, NSError *error))completion;
 
 /// Clears any user auth token from the router.
 - (void)logout;

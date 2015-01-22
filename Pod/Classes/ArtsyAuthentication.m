@@ -73,8 +73,8 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     }];
 }
 
-- (void)createUserWithUserDictionary:(NSDictionary *)dictionary :(void (^)(NSDictionary *newUserDictionary, NSError *error))completion {
-    NSURLRequest *request = [self.router requestForXapp];
+- (void)createUserWithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password completion:(void (^)(NSDictionary *newUserDictionary, NSError *error))completion {
+    NSURLRequest *request = [self.router requestForCreateNewUserwithEmail:email name:name password:password];
     [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         completion(JSON, nil);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

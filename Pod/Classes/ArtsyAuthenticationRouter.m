@@ -55,6 +55,17 @@
     return [self baseRequestForAddress:url];
 }
 
+- (NSURLRequest *)requestForCreateNewUserwithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password {
+    NSDictionary *params = @{
+        @"email" : email,
+        @"password" : password,
+        @"name" : name
+    };
+
+    NSURL *url = [[self urlWithPath:@"/api/v1/user"] uq_URLByAppendingQueryDictionary:params];
+    return [self baseRequestForAddress:url method:@"POST"];
+}
+
 - (NSURLRequest *)newCreateUserViaFacebookRequestWithToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name {
     NSDictionary *params = @{
         @"provider": @"facebook",

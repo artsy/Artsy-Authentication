@@ -24,7 +24,35 @@
     auth.twitterAPISecret = self.keys.artsyTwitterSecret;
     self.auth = auth;
 
-//    [self doTwitter];
+    [self doArtsy];
+}
+
+- (void)doArtsy {
+    ArtsyAuthentication *auth = self.auth;
+
+    NSLog(@"Getting Xapp token.");
+    [auth getWeekLongXAppTrialToken:^(ArtsyToken *token, NSError *error) {
+        NSLog(@"Retrieved Xapp token: %@", token);
+
+        NSString *email = @"starlord@example.com";
+        NSString *name = @"Star Lord";
+        NSString *password = @"1234Pasd1";
+
+        NSLog(@"Creating new user %@", email);
+        [auth createUserWithEmail:email name:name password:password completion:^(NSDictionary *newUserDictionary, NSError *error) {
+            NSLog(@"Created new user: %@", newUserDictionary);
+
+            [auth logInWithEmail:email password:password completion:^(ArtsyToken *token, NSError *error) {
+                if (error) {
+                    NSLog(@"Error logging in: %@", error);
+                }
+
+                if (token) {
+                    NSLog(@"Retrieved ArtsyToken: %@", token);
+                }
+            }];
+        }];
+    }];
 }
 
 - (void)doTwitter {
