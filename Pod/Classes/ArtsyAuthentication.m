@@ -53,7 +53,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     }];
 }
 
-- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion {
+- (void)logInWithEmail:(NSString *)email password:(NSString *)password completion:(ArtsyAuthenticationCallback)completion {
     __weak __typeof(self) weakSelf = self;
 
     NSURLRequest *request = [self.router requestForAuthWithEmail:email password:password];
@@ -69,7 +69,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf findErrorsInResponse:(NSHTTPURLResponse *)response error:&error dict:JSON];
-        [strongSelf callback:JSON error:error completion:completion];
+        [strongSelf callback:nil error:error completion:completion];
     }];
 }
 
