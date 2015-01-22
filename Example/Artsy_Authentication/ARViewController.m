@@ -20,8 +20,8 @@
     self.keys = [Artsy_AuthenticationKeys new];
 
     ArtsyAuthentication *auth = [[ArtsyAuthentication alloc] initWithClientID:self.keys.artsyAPIClientKey clientSecret:self.keys.artsyAPIClientSecret];
-    auth.twitterAPIKey = self.keys.artsyFacebookTwitterKey;
-    auth.twitterAPISecret = self.keys.artsyFacebookTwitterSecret;
+    auth.twitterAPIKey = self.keys.artsyTwitterKey;
+    auth.twitterAPISecret = self.keys.artsyTwitterSecret;
     self.auth = auth;
 
 //    [self doTwitter];
