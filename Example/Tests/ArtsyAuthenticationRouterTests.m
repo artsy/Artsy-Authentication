@@ -71,7 +71,7 @@ describe(@"a router", ^{
         NSString *twitterToken = @"costolo";
         NSString *twitterSecret = @"i_miss_ev";
 
-        NSURLRequest *twitterRequest = [sut newTwitterOAuthRequestWithToken:twitterToken andSecret:twitterSecret];
+        NSURLRequest *twitterRequest = [sut newTwitterOAuthRequestWithToken:twitterToken secret:twitterSecret];
         NSDictionary *parameters = twitterRequest.URL.uq_queryDictionary;
 
         expect(twitterRequest.URL.path).to( equal(@"/oauth2/access_token") );

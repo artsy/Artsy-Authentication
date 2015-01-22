@@ -7,6 +7,7 @@
 @interface ARViewController ()
 
 @property (nonatomic, strong) ArtsyAuthentication *auth;
+@property (nonatomic, strong) Artsy_AuthenticationKeys *keys;
 
 @end
 
@@ -16,13 +17,57 @@
 {
     [super viewDidLoad];
 
-    Artsy_AuthenticationKeys *keys = [Artsy_AuthenticationKeys new];
+    self.keys = [Artsy_AuthenticationKeys new];
 
-    ArtsyAuthentication *auth = [[ArtsyAuthentication alloc] initWithClientID:keys.artsyAPIClientKey clientSecret:keys.artsyAPIClientSecret];
-    auth.router.staging = YES;
+    ArtsyAuthentication *auth = [[ArtsyAuthentication alloc] initWithClientID:self.keys.artsyAPIClientKey clientSecret:self.keys.artsyAPIClientSecret];
+    auth.twitterAPIKey = self.keys.artsyTwitterKey;
+    auth.twitterAPISecret = self.keys.artsyTwitterSecret;
     self.auth = auth;
 
-    NSString *facebookAppID = keys.artsyFacebookAppID;
+//    [self doTwitter];
+}
+
+- (void)doTwitter {
+    ArtsyAuthentication *auth = self.auth;
+
+    NSLog(@"Getting Xapp token.");
+    [auth getWeekLongXAppTrialToken:^(ArtsyToken *token, NSError *error) {
+        NSLog(@"Retrieved Xapp token: %@", token);
+
+        NSLog(@"Retrieving Twitter accounts.");
+        [auth retrieveTwitterAccounts:^(NSArray *accounts, NSError *error) {
+            ACAccount *account = accounts.firstObject;
+            NSLog(@"Retrieved %@ Twitter accounts. Choosing the first (%@).", @(accounts.count), account.username);
+
+            NSLog(@"Logging in with Twitter.");
+            [auth logInWithTwitterAccount:account completion:^(ArtsyToken *token, NSError *error) {
+                if (error) {
+                    if ([error.domain isEqualToString:ArtsyAuthenticationErrorDomain] && error.code == ArtsyErrorUserDoesNotExist) {
+                        NSLog(@"User does not exist. Creating with Twitter token.");
+                        [auth createNewUserWithTwitter:account email:@"ash_example@example.com" name:@"Example Furrow" completion:^(ArtsyToken *token, NSError *error) {
+                            if (error) {
+                                NSLog(@"Error creating user: %@", error);
+                            } else {
+                                NSLog(@"Successfully created Artsy user.");
+                                NSLog(@"Retrieved ArtsyToken: %@", token);
+                            }
+                        }];
+                    } else {
+                        NSLog(@"Error logging in: %@", error);
+                    }
+                }
+
+                if (token) {
+                    NSLog(@"Retrieved ArtsyToken: %@", token);
+                }
+            }];
+        }];
+    }];
+}
+
+- (void)doFacebook {
+    ArtsyAuthentication *auth = self.auth;
+    NSString *facebookAppID = self.keys.artsyFacebookAppID;
 
     NSLog(@"Getting Xapp token.");
     [auth getWeekLongXAppTrialToken:^(ArtsyToken *token, NSError *error) {

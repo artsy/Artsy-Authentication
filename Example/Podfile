@@ -8,9 +8,8 @@ plugin 'cocoapods-keys', {
         "ArtsyAPIClientSecret",
         "ArtsyAPIClientKey",
         "ArtsyFacebookAppID",
-        "ArtsyFacebookStagingToken",
-        "ArtsyFacebookTwitterKey",
-        "ArtsyFacebookTwitterSecret"
+        "ArtsyTwitterKey",
+        "ArtsyTwitterSecret"
 ]}
 
 target 'Artsy_Authentication', :exclusive => true do
