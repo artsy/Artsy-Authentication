@@ -6,31 +6,12 @@
 @import ISO8601DateFormatter;
 #import <objc/runtime.h>
 #import "TestingNetworkOperator.h"
-
-extern const void* ArtsyAccountStoreKey;
-
-@interface ArtsyAuthentication(Test)
-
-- (SLRequest *)requestForMe:(ACAccount *)facebookAccount;
-
-@property (nonatomic, strong) ArtsyNetworkOperator *networkOperator;
-
-@end
-
-@interface StubbedAuthenticator : ArtsyAuthentication
-@end
-
-@interface TestingAccountStore : ACAccountStore
-@end
-
-@interface TestingResponse : NSHTTPURLResponse
-@property (readwrite) NSInteger statusCode;
-@end
-
-NSString *authToken = @"token";
-NSDate *authExpiryDate;
+#import "TestingClasses.h"
 
 QuickSpecBegin(ArtsyAuthenticationTests_Facebook)
+
+__block NSString *authToken = @"token";
+__block NSDate *authExpiryDate;
 
 describe(@"an authentication object", ^{
     NSString *clientID = @"Art5y";
@@ -53,7 +34,7 @@ describe(@"an authentication object", ^{
 
     beforeEach(^{
         sut = [[StubbedAuthenticator alloc] initWithClientID:clientID clientSecret:clientSecret];
-        TestingAccountStore *accountStore = [[TestingAccountStore alloc] init];
+        FacebookTestingAccountStore *accountStore = [[FacebookTestingAccountStore alloc] init];
         objc_setAssociatedObject(sut, ArtsyAccountStoreKey, accountStore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
 
@@ -62,11 +43,12 @@ describe(@"an authentication object", ^{
 
         __block ArtsyToken *fetchedAuthToken;
         [sut logInWithFacebook:@"1234" completion:^(ArtsyToken *token, NSError *error) {
+            expect(error).to( beNil() );
             fetchedAuthToken = token;
         }];
 
-        expect(fetchedAuthToken.token).toEventually( equal(authToken) );
-        expect(fetchedAuthToken.expirationDate).toEventually( equal(authExpiryDate) );
+        expect(fetchedAuthToken.token).to( equal(authToken) );
+        expect(fetchedAuthToken.expirationDate).to( equal(authExpiryDate) );
     });
 
     it(@"creates a user", ^{
@@ -77,8 +59,8 @@ describe(@"an authentication object", ^{
             fetchedAuthToken = token;
         }];
 
-        expect(fetchedAuthToken.token).toEventually( equal(authToken) );
-        expect(fetchedAuthToken.expirationDate).toEventually( equal(authExpiryDate) );
+        expect(fetchedAuthToken.token).to( equal(authToken) );
+        expect(fetchedAuthToken.expirationDate).to( equal(authExpiryDate) );
     });
 
     it(@"returns correct error for non-existing users", ^{
@@ -90,74 +72,11 @@ describe(@"an authentication object", ^{
             fetchedError = error;
         }];
 
-        expect(@(fetchedError.code)).toEventually( equal(@(ArtsyErrorUserDoesNotExist)) );
-        expect(fetchedError.domain).toEventually( equal(ArtsyAuthenticationErrorDomain) );
-        expect(fetchedError.userInfo[NSUnderlyingErrorKey]).toEventually( equal(error) );
+        expect(@(fetchedError.code)).to( equal(@(ArtsyErrorUserDoesNotExist)) );
+        expect(fetchedError.domain).to( equal(ArtsyAuthenticationErrorDomain) );
+        expect(fetchedError.userInfo[NSUnderlyingErrorKey]).to( equal(error) );
     });
 });
 
 QuickSpecEnd
 
-@interface TestingSocialRequest : SLRequest
-
-@end
-
-@implementation TestingSocialRequest
-
-- (instancetype)init {
-    /// Note that we're *not* calling super to avoid its pesky assertion failures. 
-    return self;
-}
-
-- (void)performRequestWithHandler:(SLRequestHandler)handler {
-    TestingResponse *response = [[TestingResponse alloc] init];
-    response.statusCode = 200;
-
-    id JSON = @{
-        @"email" : @"ash@ashfurrow.com",
-        @"name" : @"Ash Furrow"
-    };
-    NSData *data = [NSJSONSerialization dataWithJSONObject:JSON options:0 error:nil];
-
-    handler(data, response, nil);
-}
-
-@end
-
-@implementation StubbedAuthenticator
-
-- (SLRequest *)requestForMe:(ACAccount *)facebookAccount {
-    return [[TestingSocialRequest alloc] init];
-}
-
-@end
-
-@interface TestingAccount : ACAccount
-
-@end
-
-@implementation TestingAccount
-
-- (ACAccountCredential *)credential {
-    return [[ACAccountCredential alloc] initWithOAuth2Token:@"facebook_token" refreshToken:@"facebook_refresh_token"expiryDate:[NSDate distantFuture]];
-}
-
-@end
-
-@implementation TestingAccountStore
-
-- (void)requestAccessToAccountsWithType:(ACAccountType *)accountType options:(NSDictionary *)options completion:(ACAccountStoreRequestAccessCompletionHandler)completion {
-    completion(YES, nil);
-}
-
-- (NSArray *)accountsWithAccountType:(ACAccountType *)accountType {
-    return @[[TestingAccount new]];
-}
-
-@end
-
-@implementation TestingResponse
-
-@synthesize statusCode;
-
-@end

@@ -14,6 +14,7 @@
 		5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */; };
 		5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */; };
 		5EE2A58678EA720783167420 /* Pods_Artsy_Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5EF701D81A71446F004C03E9 /* TestingClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF701D71A71446F004C03E9 /* TestingClasses.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		5E445A9C1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArtsyAuthenticationTests+Twitter.m"; sourceTree = "<group>"; };
 		5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyTokenTests.m; sourceTree = "<group>"; };
 		5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyAuthenticationTests.m; sourceTree = "<group>"; };
+		5EF701D61A71446F004C03E9 /* TestingClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingClasses.h; sourceTree = "<group>"; };
+		5EF701D71A71446F004C03E9 /* TestingClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingClasses.m; sourceTree = "<group>"; };
 		5FAFA31DF0D63E2B5A77930D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Artsy_Authentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artsy_Authentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,8 @@
 			children = (
 				5E445A941A6FF103009712CA /* TestingNetworkOperator.h */,
 				5E445A951A6FF103009712CA /* TestingNetworkOperator.m */,
+				5EF701D61A71446F004C03E9 /* TestingClasses.h */,
+				5EF701D71A71446F004C03E9 /* TestingClasses.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				5E445A9D1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m in Sources */,
 				5E445A991A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m in Sources */,
 				5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */,
+				5EF701D81A71446F004C03E9 /* TestingClasses.m in Sources */,
 				5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */,
 				5E445A961A6FF103009712CA /* TestingNetworkOperator.m in Sources */,
 				5E445A9B1A6FFC9C009712CA /* ArtsyAuthenticationTests+Facebook.m in Sources */,
