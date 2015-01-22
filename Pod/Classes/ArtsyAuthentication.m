@@ -62,8 +62,6 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:JSON[@"expires_in"]];
         ArtsyToken *token = [[ArtsyToken alloc] initWithToken:JSON[ArtsyOAuthTokenKey] expirationDate:date];
 
-        strongSelf.router.authToken = token;
-
         [strongSelf callback:token error:nil completion:completion];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
