@@ -24,7 +24,7 @@
     auth.twitterAPISecret = self.keys.artsyFacebookTwitterSecret;
     self.auth = auth;
 
-    [self doTwitter];
+//    [self doTwitter];
 }
 
 - (void)doTwitter {
@@ -44,7 +44,7 @@
                 if (error) {
                     if ([error.domain isEqualToString:ArtsyAuthenticationErrorDomain] && error.code == ArtsyErrorUserDoesNotExist) {
                         NSLog(@"User does not exist. Creating with Twitter token.");
-                        [auth createNewUserWithTwitter:account completion:^(ArtsyToken *token, NSError *error) {
+                        [auth createNewUserWithTwitter:account email:@"ash_example@example.com" name:@"Example Furrow" completion:^(ArtsyToken *token, NSError *error) {
                             if (error) {
                                 NSLog(@"Error creating user: %@", error);
                             } else {

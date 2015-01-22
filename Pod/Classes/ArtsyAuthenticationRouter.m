@@ -82,7 +82,7 @@
     return [self baseRequestForAddress:url];
 }
 
-- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token andSecret:(NSString *)secret {
+- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token secret:(NSString *)secret {
     NSDictionary *params = @{
         @"oauth_provider" : @"twitter",
         @"oauth_token" : token,
@@ -95,6 +95,19 @@
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
     return [self baseRequestForAddress:url];
+}
+
+- (NSURLRequest *)newCreateUserViaTwitterRequestWithToken:(NSString *)token secret:(NSString *)secret email:(NSString *)email name:(NSString *)name {
+    NSDictionary *params = @{
+         @"provider": @"twitter",
+         @"oauth_token": token,
+         @"oauth_token_secret": secret,
+         @"email" : email,
+         @"name" : name
+    };
+
+    NSURL *url = [[self urlWithPath:@"/api/v1/user"] uq_URLByAppendingQueryDictionary:params];
+    return [self baseRequestForAddress:url method:@"POST"];
 }
 
 - (NSURLRequest *)requestForXapp {

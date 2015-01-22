@@ -21,7 +21,10 @@
 - (NSURLRequest *)newCreateUserViaFacebookRequestWithToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name;
 
 /// Log in with twitter token + secret
-- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token andSecret:(NSString *)secret;
+- (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token secret:(NSString *)secret;
+
+/// Create new user with Twitter token, email, and name
+- (NSURLRequest *)newCreateUserViaTwitterRequestWithToken:(NSString *)token secret:(NSString *)secret email:(NSString *)email name:(NSString *)name;
 
 /// Switch to staging environment
 @property (nonatomic, assign, readwrite) BOOL staging;

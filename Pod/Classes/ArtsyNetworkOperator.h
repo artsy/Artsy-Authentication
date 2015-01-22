@@ -1,9 +1,12 @@
 #import <Foundation/Foundation.h>
 
+typedef void (^ArtsyNetworkSuccessCallback)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON);
+typedef void (^ArtsyNetworkFailureCallback)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON);
+
 @interface ArtsyNetworkOperator : NSObject
 
 - (NSURLSessionTask *)JSONTaskWithRequest:(NSURLRequest *)request
-                                  success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
-                                  failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON))failure;
+                                  success:(ArtsyNetworkSuccessCallback)success
+                                  failure:(ArtsyNetworkFailureCallback)failure;
 
 @end

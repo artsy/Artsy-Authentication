@@ -52,39 +52,31 @@ const void* ArtsyTwitterAPISecretKey = &ArtsyTwitterAPISecretKey;
     NSAssert(self.twitterAPISecret != nil, @"No Twitter API secret.");
 }
 
-- (void)logInWithTwitterAccount:(ACAccount *)accout credentials:(NSDictionary *)credentials completion:(ArtsyAuthenticationCallback)callback {
+- (void)createUserWithTwitterAccount:(ACAccount *)accout email:(NSString *)email name:(NSString *)name credentials:(NSDictionary *)credentials completion:(ArtsyAuthenticationCallback)callback {
     __weak __typeof(self) weakSelf = self;
 
     NSString *oauthToken = credentials[@"oauth_token"];
     NSString *oauthSecret = credentials[@"oauth_token_secret"];
 
-    NSURLRequest *request = [self.router newTwitterOAuthRequestWithToken:oauthToken andSecret:oauthSecret];
+    NSURLRequest *request = [self.router newCreateUserViaTwitterRequestWithToken:oauthToken secret:oauthSecret email:email name:name];
 
     [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        NSString *token = JSON[ArtsyOAuthTokenKey];
-        NSString *expiryDateString = JSON[ArtsyOAuthExpiryKey];
-        ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
-        NSDate *expiryDate = [dateFormatter dateFromString:expiryDateString];
 
-        ArtsyToken *artsyToken = [[ArtsyToken alloc] initWithToken:token expirationDate:expiryDate];
-
-        [strongSelf callback:artsyToken error:nil completion:callback];
+        [strongSelf logInWithTwitterAccount:accout completion:callback];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        // This case handles a 401 from Artsy's server, which means the Facebook account is not associated with a user.
-        if (response.statusCode == 401) {
-            NSDictionary *userInfo;
-            if (error) {
-                userInfo = @{ NSUnderlyingErrorKey : error };
-            }
-            NSError *artsyError = [NSError errorWithDomain:ArtsyAuthenticationErrorDomain code:ArtsyErrorUserDoesNotExist userInfo:userInfo];
-
-            [strongSelf callback:nil error:artsyError completion:callback];
-        } else {
-            [strongSelf callback:nil error:error completion:callback];
-        }
+        [strongSelf callback:nil error:error completion:callback];
     }];
+}
+
+- (void)logInWithTwitterAccount:(ACAccount *)accout credentials:(NSDictionary *)credentials completion:(ArtsyAuthenticationCallback)callback {
+    NSString *oauthToken = credentials[@"oauth_token"];
+    NSString *oauthSecret = credentials[@"oauth_token_secret"];
+
+    NSURLRequest *request = [self.router newTwitterOAuthRequestWithToken:oauthToken secret:oauthSecret];
+
+    [self.networkOperator JSONTaskWithRequest:request success:[self successfulLoginBlock:callback] failure:[self failedLoginBlock:callback]];
 }
 
 @end
@@ -120,16 +112,23 @@ const void* ArtsyTwitterAPISecretKey = &ArtsyTwitterAPISecretKey;
         if (credentials.count > 0) {
             [strongSelf logInWithTwitterAccount:accout credentials:credentials completion:callback];
         } else {
-            [self callback:nil error:error completion:callback];
+            [strongSelf callback:nil error:error completion:callback];
         }
     }];
 }
 
-- (void)createNewUserWithTwitter:(ACAccount *)accout completion:(ArtsyAuthenticationCallback)callback {
+- (void)createNewUserWithTwitter:(ACAccount *)accout email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
+    __weak __typeof(self) weakSelf = self;
     [self checkForKeys];
 
-    // TODO: 🚢
-    NSLog(@"Creating user not implemented yet.");
+    [self.reverseAuth requestCredentialsForAccount:accout completion:^(NSDictionary *credentials, NSError *error) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (credentials.count > 0) {
+            [strongSelf createUserWithTwitterAccount:accout email:email name:name credentials:credentials completion:callback];
+        } else {
+            [strongSelf callback:nil error:error completion:callback];
+        }
+    }];
 }
 
 #pragma mark - Properties
