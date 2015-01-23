@@ -1,7 +1,6 @@
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyToken.h"
-
-@import NSURL_QueryDictionary;
+#import <NSURL+QueryDictionary/NSURL+QueryDictionary.h>
 
 @interface ArtsyAuthenticationRouter()
 
@@ -53,6 +52,17 @@
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
     return [self baseRequestForAddress:url];
+}
+
+- (NSURLRequest *)requestForCreateNewUserwithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password {
+    NSDictionary *params = @{
+        @"email" : email,
+        @"password" : password,
+        @"name" : name
+    };
+
+    NSURL *url = [[self urlWithPath:@"/api/v1/user"] uq_URLByAppendingQueryDictionary:params];
+    return [self baseRequestForAddress:url method:@"POST"];
 }
 
 - (NSURLRequest *)newCreateUserViaFacebookRequestWithToken:(NSString *)facebookToken email:(NSString *)email name:(NSString *)name {

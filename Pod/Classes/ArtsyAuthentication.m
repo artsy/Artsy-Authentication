@@ -3,8 +3,7 @@
 #import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
 #import "ArtsyAuthenticationRouter.h"
-
-@import ISO8601DateFormatter;
+#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
 NSString* const ArtsyOAuthTokenKey = @"access_token";
 NSString* const ArtsyOAuthExpiryKey = @"expires_in";
@@ -53,7 +52,7 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     }];
 }
 
-- (void)getUserApplicationXAccessTokenWithEmail:(NSString *)email password:(NSString *)password :(ArtsyAuthenticationCallback)completion {
+- (void)logInWithEmail:(NSString *)email password:(NSString *)password completion:(ArtsyAuthenticationCallback)completion {
     __weak __typeof(self) weakSelf = self;
 
     NSURLRequest *request = [self.router requestForAuthWithEmail:email password:password];
@@ -63,18 +62,16 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
         NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:JSON[@"expires_in"]];
         ArtsyToken *token = [[ArtsyToken alloc] initWithToken:JSON[ArtsyOAuthTokenKey] expirationDate:date];
 
-        strongSelf.router.authToken = token;
-
         [strongSelf callback:token error:nil completion:completion];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf findErrorsInResponse:(NSHTTPURLResponse *)response error:&error dict:JSON];
-        [strongSelf callback:JSON error:error completion:completion];
+        [strongSelf callback:nil error:error completion:completion];
     }];
 }
 
-- (void)createUserWithUserDictionary:(NSDictionary *)dictionary :(void (^)(NSDictionary *newUserDictionary, NSError *error))completion {
-    NSURLRequest *request = [self.router requestForXapp];
+- (void)createUserWithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password completion:(void (^)(NSDictionary *newUserDictionary, NSError *error))completion {
+    NSURLRequest *request = [self.router requestForCreateNewUserwithEmail:email name:name password:password];
     [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         completion(JSON, nil);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

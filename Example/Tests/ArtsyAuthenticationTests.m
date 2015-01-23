@@ -49,20 +49,17 @@ describe(@"an authentication object", ^{
         expect(sut.router.xappToken.expirationDate).to( equal(expiryDate) );
     });
 
-    it(@"successfully sets Auth token upon login", ^{
+    it(@"creates a new user successfully", ^{
         id JSON = @{
             @"expires_in": [dateFormatter stringFromDate:expiryDate],
-            @"access_token": tokenString
+            @"xapp_token": tokenString
         };
         sut.networkOperator = [[TestingNetworkOperator alloc] initWithResponse:nil JSON:JSON error:nil];
 
-        [sut getUserApplicationXAccessTokenWithEmail:@"" password:@"" :^(ArtsyToken *token, NSError *error) {
-            expect(token.token).to( equal(tokenString) );
-            expect(token.expirationDate).to( equal(expiryDate) );
+        [sut createUserWithEmail:@"" name:@"" password:@"" completion:^(NSDictionary *newUserDictionary, NSError *error) {
+            expect(@(newUserDictionary.count)).to( beGreaterThan(@(0)) );
+            expect(error).to( beNil() );
         }];
-
-        expect(sut.router.authToken.token).to( equal(tokenString) );
-        expect(sut.router.authToken.expirationDate).to( equal(expiryDate) );
     });
 
     it(@"logs out successfully", ^{

@@ -14,6 +14,9 @@
 /// Typical Artsy artsy log in
 - (NSURLRequest *)requestForAuthWithEmail:(NSString *)email password:(NSString *)password;
 
+/// Artsy new user
+- (NSURLRequest *)requestForCreateNewUserwithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password;
+
 /// Log in with Facebook token
 - (NSURLRequest *)newFacebookOAuthRequestWithToken:(NSString *)facebookToken;
 
