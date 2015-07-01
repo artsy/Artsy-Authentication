@@ -19,8 +19,9 @@ end
 
 target 'Tests', :exclusive => true do
   pod "Artsy+Authentication", :path => "../"
-
-  pod 'Quick'
-  pod 'Nimble'
   pod 'OHHTTPStubs'
+
+  # swift 1.2
+  pod 'Quick', "0.3.0"
+  pod 'Nimble', "1.0.0"
 end
