@@ -1,7 +1,6 @@
 #import "ARViewController.h"
 
-#import <Pods_Artsy_Authentication/Artsy_AuthenticationKeys.h>
-
+@import Keys;
 @import Artsy_Authentication;
 
 @interface ARViewController ()

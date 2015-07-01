@@ -13,7 +13,6 @@
 		5E445A9D1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E445A9C1A7048D0009712CA /* ArtsyAuthenticationTests+Twitter.m */; };
 		5E82A6581A6FE765002CB6B3 /* ArtsyTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6571A6FE765002CB6B3 /* ArtsyTokenTests.m */; };
 		5E82A65A1A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82A6591A6FEAEC002CB6B3 /* ArtsyAuthenticationTests.m */; };
-		5EE2A58678EA720783167420 /* Pods_Artsy_Authentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5EF701D81A71446F004C03E9 /* TestingClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF701D71A71446F004C03E9 /* TestingClasses.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -30,7 +29,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* ArtsyAuthenticationRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* ArtsyAuthenticationRouterTests.m */; };
-		8A137A1342B95D4CD111B7A0 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99515DF0F5EC99614BD7846E /* Pods_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F0EB8CD5F14FECD0AE25D6A3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,8 @@
 /* Begin PBXFileReference section */
 		0EE7ED2894CD6CCBB70FB624 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2FD6D890C0BA1DF8CF697295 /* Artsy+Authentication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "Artsy+Authentication.podspec"; path = "../Artsy+Authentication.podspec"; sourceTree = "<group>"; };
-		43F67CD4C2B0A2061B14D96A /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		50808596B20FE4317B82CE4F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53BA77924F90A2071F8F1ECD /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5E445A941A6FF103009712CA /* TestingNetworkOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingNetworkOperator.h; sourceTree = "<group>"; };
 		5E445A951A6FF103009712CA /* TestingNetworkOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingNetworkOperator.m; sourceTree = "<group>"; };
 		5E445A981A6FF4DE009712CA /* ArtsyNetworkOperatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtsyNetworkOperatorTests.m; sourceTree = "<group>"; };
@@ -57,7 +58,7 @@
 		5EF701D61A71446F004C03E9 /* TestingClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingClasses.h; sourceTree = "<group>"; };
 		5EF701D71A71446F004C03E9 /* TestingClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingClasses.m; sourceTree = "<group>"; };
 		5FAFA31DF0D63E2B5A77930D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* Artsy_Authentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artsy_Authentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* ArtsyAuthenticationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtsyAuthenticationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -79,11 +80,11 @@
 		6003F5BB195388D20070C39A /* ArtsyAuthenticationRouterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtsyAuthenticationRouterTests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6096C0B01A501FF4002B14DC /* Artsy_Authentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Artsy_Authentication.framework; path = "Pods/build/Debug-iphoneos/Pods-Tests/Artsy_Authentication.framework"; sourceTree = "<group>"; };
-		86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Artsy_Authentication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		99515DF0F5EC99614BD7846E /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C84238BBA8683C03C6EFC302 /* Pods-Artsy_Authentication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsy_Authentication.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Artsy_Authentication/Pods-Artsy_Authentication.debug.xcconfig"; sourceTree = "<group>"; };
-		D1908B4F33C4A53518D0896C /* Pods-Artsy_Authentication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Artsy_Authentication.release.xcconfig"; path = "Pods/Target Support Files/Pods-Artsy_Authentication/Pods-Artsy_Authentication.release.xcconfig"; sourceTree = "<group>"; };
-		DED1438EDECCD9F14758450C /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtsyAuthenticationExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95E897735D002F39A1980137 /* Pods-ArtsyAuthenticationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtsyAuthenticationExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ArtsyAuthenticationExample/Pods-ArtsyAuthenticationExample.debug.xcconfig"; sourceTree = "<group>"; };
+		9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C2D752D1E31D32B54A78798 /* Pods-ArtsyAuthenticationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtsyAuthenticationExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ArtsyAuthenticationExample/Pods-ArtsyAuthenticationExample.release.xcconfig"; sourceTree = "<group>"; };
+		CAD66825190E3A49565159DF /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +95,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				5EE2A58678EA720783167420 /* Pods_Artsy_Authentication.framework in Frameworks */,
+				D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,13 +106,24 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				8A137A1342B95D4CD111B7A0 /* Pods_Tests.framework in Frameworks */,
+				F0EB8CD5F14FECD0AE25D6A3 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37174D871CD31C63ED6B5B17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95E897735D002F39A1980137 /* Pods-ArtsyAuthenticationExample.debug.xcconfig */,
+				9C2D752D1E31D32B54A78798 /* Pods-ArtsyAuthenticationExample.release.xcconfig */,
+				53BA77924F90A2071F8F1ECD /* Pods-Tests.debug.xcconfig */,
+				CAD66825190E3A49565159DF /* Pods-Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5E445A971A6FF112009712CA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +143,14 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				EC4CB13435CAAC4265CDB8DE /* Pods */,
+				37174D871CD31C63ED6B5B17 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* Artsy_Authentication.app */,
+				6003F58A195388D20070C39A /* ArtsyAuthenticationExample.app */,
 				6003F5AE195388D20070C39A /* Tests.xctest */,
 			);
 			name = Products;
@@ -152,8 +164,9 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				99515DF0F5EC99614BD7846E /* Pods_Tests.framework */,
-				86698C308852FD73F173D902 /* Pods_Artsy_Authentication.framework */,
+				50808596B20FE4317B82CE4F /* Pods.framework */,
+				681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */,
+				9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,50 +232,39 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		EC4CB13435CAAC4265CDB8DE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C84238BBA8683C03C6EFC302 /* Pods-Artsy_Authentication.debug.xcconfig */,
-				D1908B4F33C4A53518D0896C /* Pods-Artsy_Authentication.release.xcconfig */,
-				43F67CD4C2B0A2061B14D96A /* Pods-Tests.debug.xcconfig */,
-				DED1438EDECCD9F14758450C /* Pods-Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* Artsy_Authentication */ = {
+		6003F589195388D20070C39A /* ArtsyAuthenticationExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "Artsy_Authentication" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ArtsyAuthenticationExample" */;
 			buildPhases = (
-				4E473CFCEF1DB27B7E1A47AC /* Check Pods Manifest.lock */,
+				4D04527D7735798F0B9F5C87 /* Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				B05B56E2CACC90583D0474C5 /* Copy Pods Resources */,
-				32D2F4B948C1F1EAD200DF31 /* Embed Pods Frameworks */,
+				7A2021FA0D1BF47375A84F03 /* Embed Pods Frameworks */,
+				236D0E670BDADB563190C1B2 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Artsy_Authentication;
+			name = ArtsyAuthenticationExample;
 			productName = Artsy_Authentication;
-			productReference = 6003F58A195388D20070C39A /* Artsy_Authentication.app */;
+			productReference = 6003F58A195388D20070C39A /* ArtsyAuthenticationExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6003F5AD195388D20070C39A /* Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				F8B8DB5DC688E9D3C3EC822B /* Check Pods Manifest.lock */,
+				0724086CA30118BF09E9577C /* Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				F463339314B458AC8E48332A /* Copy Pods Resources */,
-				AB32C3E8D3A4E9AACCEE0FEA /* Embed Pods Frameworks */,
+				5274752EB82514D02E425A4D /* Embed Pods Frameworks */,
+				58B15A8954CF4079B282653F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,7 +304,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* Artsy_Authentication */,
+				6003F589195388D20070C39A /* ArtsyAuthenticationExample */,
 				6003F5AD195388D20070C39A /* Tests */,
 			);
 		};
@@ -331,22 +333,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32D2F4B948C1F1EAD200DF31 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Artsy_Authentication/Pods-Artsy_Authentication-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E473CFCEF1DB27B7E1A47AC /* Check Pods Manifest.lock */ = {
+		0724086CA30118BF09E9577C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,7 +348,37 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AB32C3E8D3A4E9AACCEE0FEA /* Embed Pods Frameworks */ = {
+		236D0E670BDADB563190C1B2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArtsyAuthenticationExample/Pods-ArtsyAuthenticationExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D04527D7735798F0B9F5C87 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5274752EB82514D02E425A4D /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,22 +393,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B05B56E2CACC90583D0474C5 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Artsy_Authentication/Pods-Artsy_Authentication-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F463339314B458AC8E48332A /* Copy Pods Resources */ = {
+		58B15A8954CF4079B282653F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,19 +408,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F8B8DB5DC688E9D3C3EC822B /* Check Pods Manifest.lock */ = {
+		7A2021FA0D1BF47375A84F03 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ArtsyAuthenticationExample/Pods-ArtsyAuthenticationExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -454,7 +456,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* Artsy_Authentication */;
+			target = 6003F589195388D20070C39A /* ArtsyAuthenticationExample */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -569,7 +571,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C84238BBA8683C03C6EFC302 /* Pods-Artsy_Authentication.debug.xcconfig */;
+			baseConfigurationReference = 95E897735D002F39A1980137 /* Pods-ArtsyAuthenticationExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -588,7 +590,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1908B4F33C4A53518D0896C /* Pods-Artsy_Authentication.release.xcconfig */;
+			baseConfigurationReference = 9C2D752D1E31D32B54A78798 /* Pods-ArtsyAuthenticationExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -607,9 +609,9 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43F67CD4C2B0A2061B14D96A /* Pods-Tests.debug.xcconfig */;
+			baseConfigurationReference = 53BA77924F90A2071F8F1ECD /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Artsy_Authentication.app/Artsy_Authentication";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -624,16 +626,16 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtsyAuthenticationExample.app/ArtsyAuthenticationExample";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DED1438EDECCD9F14758450C /* Pods-Tests.release.xcconfig */;
+			baseConfigurationReference = CAD66825190E3A49565159DF /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Artsy_Authentication.app/Artsy_Authentication";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -644,7 +646,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtsyAuthenticationExample.app/ArtsyAuthenticationExample";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -661,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "Artsy_Authentication" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ArtsyAuthenticationExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,

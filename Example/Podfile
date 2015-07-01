@@ -4,6 +4,7 @@ use_frameworks!
 
 plugin 'cocoapods-keys', {
     :project => "Artsy_Authentication",
+    :target => "ArtsyAuthenticationExample",
     :keys => [
         "ArtsyAPIClientSecret",
         "ArtsyAPIClientKey",
@@ -12,14 +13,15 @@ plugin 'cocoapods-keys', {
         "ArtsyTwitterSecret"
 ]}
 
-target 'Artsy_Authentication', :exclusive => true do
+target 'ArtsyAuthenticationExample', :exclusive => true do
   pod "Artsy+Authentication", :path => "../"
 end
 
 target 'Tests', :exclusive => true do
   pod "Artsy+Authentication", :path => "../"
-
-  pod 'Quick', :git => "https://github.com/Quick/Quick"
-  pod 'Nimble', :git => "https://github.com/Quick/Nimble"
   pod 'OHHTTPStubs'
+
+  # swift 1.2
+  pod 'Quick', "0.3.0"
+  pod 'Nimble', "1.0.0"
 end
