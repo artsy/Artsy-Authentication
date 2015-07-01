@@ -29,7 +29,6 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* ArtsyAuthenticationRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* ArtsyAuthenticationRouterTests.m */; };
-		C2D932DD613174892D6A0649 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50808596B20FE4317B82CE4F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F0EB8CD5F14FECD0AE25D6A3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -96,7 +95,6 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				C2D932DD613174892D6A0649 /* Pods.framework in Frameworks */,
 				D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
