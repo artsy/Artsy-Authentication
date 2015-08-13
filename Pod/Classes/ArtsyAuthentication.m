@@ -8,6 +8,8 @@
 NSString* const ArtsyOAuthTokenKey = @"access_token";
 NSString* const ArtsyOAuthExpiryKey = @"expires_in";
 NSString* const ArtsyXAppTokenKey = @"xapp_token";
+NSString* const ArtsyXAppTokenKeyV2 = @"token";
+NSString* const ArtsyOAuthExpiryKeyV2 = @"expires_at";
 
 NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomain";
 
@@ -38,8 +40,11 @@ NSString* const ArtsyAuthenticationErrorDomain = @"ArtsyAuthenticationErrorDomai
     [self.networkOperator JSONTaskWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-        NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:JSON[@"expires_in"]];
-        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:JSON[ArtsyXAppTokenKey] expirationDate:date];
+        NSString *tokenString = JSON[ArtsyXAppTokenKey] ?: JSON[ArtsyXAppTokenKeyV2];
+        NSString *expireString = JSON[ArtsyOAuthExpiryKey] ?: JSON[ArtsyOAuthExpiryKeyV2];
+
+        NSDate *date = [[[ISO8601DateFormatter alloc] init] dateFromString:expireString];
+        ArtsyToken *token = [[ArtsyToken alloc] initWithToken:tokenString expirationDate:date];
 
         strongSelf.router.xappToken = token;
 
