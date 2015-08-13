@@ -1,24 +1,17 @@
 PODS:
-  - AFNetworking (1.3.4)
   - Artsy+Authentication (1.0.0):
     - ISO8601DateFormatter
     - NSURL+QueryDictionary
-    - TwitterReverseAuth
   - ISO8601DateFormatter (0.7)
   - Keys (1.0.0)
   - Nimble (1.0.0)
   - NSURL+QueryDictionary (1.1.0)
-  - OHHTTPStubs (4.0.2)
+  - OHHTTPStubs (4.1.0)
   - Quick (0.3.0)
-  - STLOAuth (1.0.0):
-    - AFNetworking (~> 1.0RC1)
-  - TwitterReverseAuth (1.0):
-    - AFNetworking (~> 1.3.4)
-    - STLOAuth
 
 DEPENDENCIES:
   - Artsy+Authentication (from `../`)
-  - Keys (from `/Users/orta/spiel/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/`)
+  - Keys (from `Pods/CocoaPodsKeys`)
   - Nimble (= 1.0.0)
   - OHHTTPStubs
   - Quick (= 0.3.0)
@@ -27,18 +20,15 @@ EXTERNAL SOURCES:
   Artsy+Authentication:
     :path: "../"
   Keys:
-    :path: "/Users/orta/spiel/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/"
+    :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  Artsy+Authentication: c59e8dc04b2f28892185a663768437baa887bab7
+  Artsy+Authentication: 3187864996df366e693a67c19c278a1686be614f
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
   NSURL+QueryDictionary: dd0a5fec689a9b4780b6fa0e0225c01ca3ea653e
-  OHHTTPStubs: dbd1957d414659783e07b49c961940b7564c23d9
+  OHHTTPStubs: f3473ab21dbf0815253ac96b977d5c36f1daad09
   Quick: 91a8e2ee5bb25eff88ebd0e7553abf728a5ac9bd
-  STLOAuth: f688148d8e0c5a6c52b18201231f0f2b1a7383e6
-  TwitterReverseAuth: 68cb76102504147dbd37b77d54c684eeda0e18ae
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

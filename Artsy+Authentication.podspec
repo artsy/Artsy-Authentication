@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Orta Therox" => "orta.therox@gmail.com" }
   s.source           = { :git => "https://github.com/artsy/Artsy_Authentication.git"}
-  s.social_media_url = 'https://twitter.com/artsy'
+  s.social_media_url = 'https://twitter.com/artsyopensource'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes'
   s.private_header_files = 'Pod/Classes/*Private.h'
   s.frameworks = 'Foundation', 'Social', 'Accounts'
-  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'TwitterReverseAuth']
+  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary']
 end

@@ -6,7 +6,7 @@
 @interface ARViewController ()
 
 @property (nonatomic, strong) ArtsyAuthentication *auth;
-@property (nonatomic, strong) Artsy_AuthenticationKeys *keys;
+@property (nonatomic, strong) Artsy_authenticationKeys *keys;
 
 @end
 
@@ -16,7 +16,7 @@
 {
     [super viewDidLoad];
 
-    self.keys = [Artsy_AuthenticationKeys new];
+    self.keys = [Artsy_authenticationKeys new];
 
     ArtsyAuthentication *auth = [[ArtsyAuthentication alloc] initWithClientID:self.keys.artsyAPIClientKey clientSecret:self.keys.artsyAPIClientSecret];
     auth.twitterAPIKey = self.keys.artsyTwitterKey;
