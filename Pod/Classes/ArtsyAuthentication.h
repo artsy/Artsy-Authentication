@@ -32,6 +32,6 @@ typedef void (^ArtsyAuthenticationCallback)(ArtsyToken *token, NSError *error);
 @property (nonatomic, assign, readwrite) BOOL stubbedData;
 
 /// Router for generating NSURLRequests
-@property (nonatomic, strong, readonly) ArtsyAuthenticationRouter *router;
+@property (nonatomic, strong, readwrite) ArtsyAuthenticationRouter *router;
 
 @end
