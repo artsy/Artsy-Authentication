@@ -3,7 +3,7 @@
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
-#import <TwitterReverseAuth/TwitterReverseAuth.h>
+#import <LVTwitterOAuthClient/LVTwitterOAuthClient.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import <objc/runtime.h>
 
@@ -13,9 +13,9 @@ const void* ArtsyTwitterReverseAuthKey = &ArtsyTwitterReverseAuthKey;
 const void* ArtsyTwitterAPIKeyKey = &ArtsyTwitterAPIKeyKey;
 const void* ArtsyTwitterAPISecretKey = &ArtsyTwitterAPISecretKey;
 
-@interface ArtsyAuthentication(Twitter_Private) <TRATwitterReverseAuthDelegate>
+@interface ArtsyAuthentication(Twitter_Private)
 
-@property (nonatomic, readonly) TRATwitterReverseAuth *reverseAuth;
+@property (nonatomic, readonly) LVTwitterOAuthClient *reverseAuth;
 
 @end
 
@@ -23,26 +23,16 @@ const void* ArtsyTwitterAPISecretKey = &ArtsyTwitterAPISecretKey;
 
 #pragma mark - Private Properties
 
-- (TRATwitterReverseAuth *)reverseAuth {
-    TRATwitterReverseAuth *reverseAuth = objc_getAssociatedObject(self, ArtsyTwitterReverseAuthKey);
+- (LVTwitterOAuthClient *)reverseAuth {
+    LVTwitterOAuthClient *reverseAuth = objc_getAssociatedObject(self, ArtsyTwitterReverseAuthKey);
 
     if (!reverseAuth) {
-        reverseAuth = [[TRATwitterReverseAuth alloc] initWithDelegate:self];
+        reverseAuth = [[LVTwitterOAuthClient alloc] initWithConsumerKey:self.twitterAPIKey andConsumerSecret:self.twitterAPISecret];
 
         objc_setAssociatedObject(self, ArtsyTwitterReverseAuthKey, reverseAuth, OBJC_ASSOCIATION_RETAIN);
     }
 
     return reverseAuth;
-}
-
-#pragma mark - TRATwitterReverseAuthDelegate Methods
-
-- (NSString *)APIKeyForTwitterReverseAuth:(TRATwitterReverseAuth *)reverseAuth {
-    return self.twitterAPIKey;
-}
-
-- (NSString *)APISecretForTwitterReverseAuth:(TRATwitterReverseAuth *)reverseAuth {
-    return self.twitterAPISecret;
 }
 
 #pragma mark - Private
@@ -103,28 +93,28 @@ const void* ArtsyTwitterAPISecretKey = &ArtsyTwitterAPISecretKey;
     }];
 }
 
-- (void)logInWithTwitterAccount:(ACAccount *)accout completion:(ArtsyAuthenticationCallback)callback {
+- (void)logInWithTwitterAccount:(ACAccount *)account completion:(ArtsyAuthenticationCallback)callback {
     __weak __typeof(self) weakSelf = self;
     [self checkForKeys];
-
-    [self.reverseAuth requestCredentialsForAccount:accout completion:^(NSDictionary *credentials, NSError *error) {
+    [self.reverseAuth requestTokensForAccount:account completionBlock:^(NSDictionary *oAuthResponse, NSError *error) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        if (credentials.count > 0) {
-            [strongSelf logInWithTwitterAccount:accout credentials:credentials completion:callback];
+
+        if (oAuthResponse[kLVOAuthAccessTokenKey] && !error) {
+            [strongSelf logInWithTwitterAccount:account credentials:oAuthResponse completion:callback];
         } else {
             [strongSelf callback:nil error:error completion:callback];
         }
     }];
 }
 
-- (void)createNewUserWithTwitter:(ACAccount *)accout email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
+- (void)createNewUserWithTwitter:(ACAccount *)account email:(NSString *)email name:(NSString *)name completion:(ArtsyAuthenticationCallback)callback {
     __weak __typeof(self) weakSelf = self;
     [self checkForKeys];
-
-    [self.reverseAuth requestCredentialsForAccount:accout completion:^(NSDictionary *credentials, NSError *error) {
+    [self.reverseAuth requestTokensForAccount:account completionBlock:^(NSDictionary *oAuthResponse, NSError *error) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        if (credentials.count > 0) {
-            [strongSelf createUserWithTwitterAccount:accout email:email name:name credentials:credentials completion:callback];
+        
+        if (oAuthResponse[kLVOAuthAccessTokenKey] && !error) {
+            [strongSelf createUserWithTwitterAccount:account email:email name:name credentials:oAuthResponse completion:callback];
         } else {
             [strongSelf callback:nil error:error completion:callback];
         }
