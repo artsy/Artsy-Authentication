@@ -22,8 +22,21 @@
     auth.twitterAPIKey = self.keys.artsyTwitterKey;
     auth.twitterAPISecret = self.keys.artsyTwitterSecret;
     self.auth = auth;
+}
 
-//    [self doArtsy];
+- (IBAction)artsyAuthTapped:(id)sender
+{
+    [self doArtsy];
+}
+
+- (IBAction)twitterAuthTapped:(id)sender
+{
+    [self doTwitter];
+}
+
+- (IBAction)facebookAuthTapped:(id)sender
+{
+    [self doFacebook];
 }
 
 - (void)doArtsy {
@@ -37,6 +50,11 @@
         NSString *name = @"Star Lord";
         NSString *password = @"1234Pasd1";
 
+        [auth logInWithEmail:email password:password completion:^(ArtsyToken *token, NSError *error) {
+            NSLog(@"Logged in with token %@", token.token);
+
+        }];
+        
         NSLog(@"Creating new user %@", email);
         [auth createUserWithEmail:email name:name password:password completion:^(NSDictionary *newUserDictionary, NSError *error) {
             NSLog(@"Created new user: %@", newUserDictionary);

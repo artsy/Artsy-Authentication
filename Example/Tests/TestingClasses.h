@@ -1,7 +1,7 @@
 @import Foundation;
 @import Artsy_Authentication;
 @import Social;
-@import TwitterReverseAuth;
+@import LVTwitterOAuthClient;
 #import "TestingNetworkOperator.h"
 
 extern const void* ArtsyAccountStoreKey;
@@ -35,6 +35,6 @@ extern const void* ArtsyTwitterReverseAuthKey;
 @interface TwitterTestingAccount : ACAccount
 @end
 
-@interface TestingTwitterReverseAuth : TRATwitterReverseAuth
+@interface TestingTwitterReverseAuth : LVTwitterOAuthClient
 
 @end

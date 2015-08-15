@@ -83,7 +83,8 @@
 
 @implementation TestingTwitterReverseAuth
 
-- (void)requestCredentialsForAccount:(ACAccount *)account completion:(void(^)(NSDictionary *credentials, NSError *error))completion {
+
+- (void)requestTokensForAccount:(ACAccount *)account completionBlock:(void(^)(NSDictionary *credentials, NSError *error))completion {
     completion(@{ @"oauth_token" : @"twitter_token", @"oauth_token_secret": @"twitter_secret" }, nil);
 }
 
