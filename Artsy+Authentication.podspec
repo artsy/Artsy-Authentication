@@ -11,9 +11,11 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/artsy/Artsy_Authentication.git"}
   s.social_media_url = 'https://twitter.com/artsy'
 
-  s.platform     = :tvos, '9.0'
-  s.platform     = :ios, '7.0'
-  s.requires_arc = true
+  
+  s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
+  s.watchos.deployment_target = '2.0'
+  s.tvos.deployment_target = '7.0'
 
   s.source_files = 'Pod/Classes'
   s.private_header_files = 'Pod/Classes/*Private.h'
