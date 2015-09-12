@@ -17,7 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - Artsy+Authentication (from `../`)
-  - Keys (from `/Users/orta/dev/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/`)
+  - Keys (from `Pods/CocoaPodsKeys`)
   - Nimble (= 1.0.0)
   - OHHTTPStubs
   - Quick (= 0.3.0)
@@ -26,10 +26,10 @@ EXTERNAL SOURCES:
   Artsy+Authentication:
     :path: "../"
   Keys:
-    :path: "/Users/orta/dev/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/"
+    :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  Artsy+Authentication: 395da4a5179f2b72bc48ceff7f11eba196e19ef0
+  Artsy+Authentication: 2fac6cff05c5ce60081ad6dbbce47254886a5f9b
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   LVTwitterOAuthClient: 058199e43af92c0b99332332fa26d2229c59f04d
@@ -40,4 +40,4 @@ SPEC CHECKSUMS:
   OHHTTPStubs: dbd1957d414659783e07b49c961940b7564c23d9
   Quick: 91a8e2ee5bb25eff88ebd0e7553abf728a5ac9bd
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0.beta.4
