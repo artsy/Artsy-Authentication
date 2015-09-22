@@ -1,10 +1,10 @@
 #import "ArtsyAuthentication.h"
 #import "ArtsyNetworkOperator.h"
-#import <Accounts/Accounts.h>
 
 extern NSString* const ArtsyOAuthTokenKey;
 extern NSString* const ArtsyOAuthExpiryKey;
 extern NSString* const ArtsyXAppTokenKey;
+extern const void* ArtsyAccountStoreKey;
 
 @class ArtsyNetworkOperator;
 
@@ -16,6 +16,5 @@ extern NSString* const ArtsyXAppTokenKey;
 
 @property (nonatomic, readonly) ArtsyNetworkOperator *networkOperator;
 
-@property (nonatomic, readonly) ACAccountStore *accountStore;
 
 @end

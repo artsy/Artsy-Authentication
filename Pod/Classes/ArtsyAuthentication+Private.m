@@ -1,7 +1,6 @@
 #import "ArtsyAuthentication+Private.h"
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 #import "ArtsyToken.h"
-#import <objc/runtime.h>
 
 const void* ArtsyAccountStoreKey = &ArtsyAccountStoreKey;
 
@@ -48,19 +47,6 @@ const void* ArtsyAccountStoreKey = &ArtsyAccountStoreKey;
             [strongSelf callback:nil error:error completion:callback];
         }
     };
-}
-
-- (ACAccountStore *)accountStore {
-    ACAccountStore *accountStore = objc_getAssociatedObject(self, ArtsyAccountStoreKey);
-
-    if (!accountStore) {
-        // This must be around at least as long as we are.
-        accountStore = [[ACAccountStore alloc] init];
-
-        objc_setAssociatedObject(self, ArtsyAccountStoreKey, accountStore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-
-    return accountStore;
 }
 
 @end
