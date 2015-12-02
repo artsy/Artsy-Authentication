@@ -7,7 +7,6 @@ before_install:
 before_script:
   - export LANG=en_US.UTF-8
 install:
-  - gem install cocoapods
   - cd Example ; make install ; cd ..
 
 xcode_workspace: Example/Artsy_Authentication.xcworkspace
