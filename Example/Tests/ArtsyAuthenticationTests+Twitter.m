@@ -42,9 +42,9 @@ describe(@"an authentication object", ^{
 
     describe(@"with no twitter key and no twitter secret", ^{
         it(@"fails ", ^{
-            expectAction([sut retrieveTwitterAccounts:nil]).to( raiseException() );
-            expectAction([sut createNewUserWithTwitter:account email:@"" name:@"" completion:nil]).to( raiseException() );
-            expectAction([sut logInWithTwitterAccount:account completion:nil]).to( raiseException() );
+            expectAction(^{ [sut retrieveTwitterAccounts:nil]; }).to( raiseException() );
+            expectAction(^{ [sut createNewUserWithTwitter:account email:@"" name:@"" completion:nil]; }).to( raiseException() );
+            expectAction(^{ [sut logInWithTwitterAccount:account completion:nil]; }).to( raiseException() );
         });
     });
 

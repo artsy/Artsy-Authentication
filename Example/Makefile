@@ -1,7 +1,7 @@
 all: install
 
 install:
-	bundle exec pod install
+	pod install
 
 keys:
 	bundle exec pod keys set ArtsyTwitterSecret "" Artsy_Authentication
