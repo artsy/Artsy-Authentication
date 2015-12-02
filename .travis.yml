@@ -7,6 +7,10 @@ before_script:
   - export LANG=en_US.UTF-8
 install:
   - cd Example ; make install ; cd ..
+  - xcodebuild -workspace Example/Artsy_Authentication.xcworkspace -scheme Artsy_Authentication-Example -sdk iphonesimulator build
+script:
+  - xcodebuild -workspace Example/Artsy_Authentication.xcworkspace -scheme Artsy_Authentication-Example -sdk iphonesimulator test
+
 xcode_workspace: Example/Artsy_Authentication.xcworkspace
 xcode_scheme: Artsy_Authentication-Example
 xcode_sdk: iphonesimulator
