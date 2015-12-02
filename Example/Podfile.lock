@@ -1,5 +1,7 @@
 PODS:
-  - Artsy+Authentication (1.0.0):
+  - Artsy+Authentication (1.5.0):
+    - Artsy+Authentication/everything (= 1.5.0)
+  - Artsy+Authentication/everything (1.5.0):
     - ISO8601DateFormatter
     - LVTwitterOAuthClient
     - NSURL+QueryDictionary
@@ -7,37 +9,49 @@ PODS:
   - Keys (1.0.0)
   - LVTwitterOAuthClient (0.3.0):
     - OAuthCore
-  - Nimble (1.0.0)
+  - Nimble (3.0.0)
   - NSData+Base64 (1.0.0)
   - NSURL+QueryDictionary (1.1.0)
   - OAuthCore (0.0.1):
     - NSData+Base64
-  - OHHTTPStubs (4.0.2)
-  - Quick (0.3.0)
+  - OHHTTPStubs (4.6.0):
+    - OHHTTPStubs/Default (= 4.6.0)
+  - OHHTTPStubs/Core (4.6.0)
+  - OHHTTPStubs/Default (4.6.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (4.6.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (4.6.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (4.6.0)
+  - Quick (0.8.0)
 
 DEPENDENCIES:
   - Artsy+Authentication (from `../`)
-  - Keys (from `/Users/orta/dev/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/`)
-  - Nimble (= 1.0.0)
+  - Keys (from `Pods/CocoaPodsKeys`)
+  - Nimble
   - OHHTTPStubs
-  - Quick (= 0.3.0)
+  - Quick
 
 EXTERNAL SOURCES:
   Artsy+Authentication:
     :path: "../"
   Keys:
-    :path: "/Users/orta/dev/ios/Artsy_Authentication/Example/Pods/CocoaPodsKeys/"
+    :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  Artsy+Authentication: 395da4a5179f2b72bc48ceff7f11eba196e19ef0
+  Artsy+Authentication: 3bf11ceca61c52e9e31490535bf5798f625406fa
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   LVTwitterOAuthClient: 058199e43af92c0b99332332fa26d2229c59f04d
-  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   NSURL+QueryDictionary: dd0a5fec689a9b4780b6fa0e0225c01ca3ea653e
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
-  OHHTTPStubs: dbd1957d414659783e07b49c961940b7564c23d9
-  Quick: 91a8e2ee5bb25eff88ebd0e7553abf728a5ac9bd
+  OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0

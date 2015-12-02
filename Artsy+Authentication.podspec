@@ -1,21 +1,42 @@
 Pod::Spec.new do |s|
   s.name             = "Artsy+Authentication"
-  s.version          = "1.0.0"
+  s.version          = "1.5.0"
   s.summary          = "Authentication for Artsy Services."
-  s.description      = <<-DESC
-                        Authentication for Artsy Cocoa libraries. Yawn, boring.
-                        DESC
+  s.description      = "Authentication for Artsy Cocoa libraries. Yawn, boring."
   s.homepage         = "https://github.com/artsy/Artsy_Authentication"
   s.license          = 'MIT'
-  s.author           = { "Orta Therox" => "orta.therox@gmail.com" }
-  s.source           = { :git => "https://github.com/artsy/Artsy_Authentication.git"}
-  s.social_media_url = 'https://twitter.com/artsy'
+  s.author           = { "Orta Therox" => "orta@artsymail.com" }
+  s.source           = { :git => "https://github.com/artsy/Artsy_Authentication.git", :tag => "#{s.version}" }
+  s.social_media_url = 'https://twitter.com/artsyopensource'
 
-  s.platform     = :ios, '7.0'
-  s.requires_arc = true
+  s.ios.deployment_target = '7.0'
+  s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'Pod/Classes'
-  s.private_header_files = 'Pod/Classes/*Private.h'
-  s.frameworks = 'Foundation', 'Social', 'Accounts'
-  s.dependencies = ['ISO8601DateFormatter', 'NSURL+QueryDictionary', 'LVTwitterOAuthClient']
+  # Twitter/FB/Email
+  s.subspec "everything" do |ss|
+    # Does not work with tvOS
+    ss.tvos.deployment_target = "100.0"
+    ss.ios.deployment_target = '7.0'
+
+    ss.source_files = 'Pod/Classes'
+    ss.private_header_files = 'Pod/Classes/*Private.h'
+
+    ss.frameworks = 'Foundation', 'Social', 'Accounts'
+    ss.dependency 'ISO8601DateFormatter'
+    ss.dependency 'NSURL+QueryDictionary'
+    ss.dependency 'LVTwitterOAuthClient'
+  end
+
+  # Email
+  s.subspec "email" do |ss|
+    ss.source_files = 'Pod/Classes'
+    ss.private_header_files = 'Pod/Classes/*Private.h'
+    ss.exclude_files = ['Pod/Classes/*Facebook.{h,m}', 'Pod/Classes/*Twitter.{h,m}']
+    ss.tvos.exclude_files = ['Pod/Classes/*Facebook.{h,m}', 'Pod/Classes/*Twitter.{h,m}', 'Pod/Classes/*Accounts.{h,m}']
+    ss.dependency 'ISO8601DateFormatter'
+    ss.dependency 'NSURL+QueryDictionary'
+    ss.frameworks = 'Foundation'
+  end
+
+  s.default_subspec = "everything"
 end

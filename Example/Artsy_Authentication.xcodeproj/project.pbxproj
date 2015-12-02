@@ -29,8 +29,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* ArtsyAuthenticationRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* ArtsyAuthenticationRouterTests.m */; };
-		D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F0EB8CD5F14FECD0AE25D6A3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D11F5C38B3F595E5C657C27E /* Pods_ArtsyAuthenticationExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681DAE59DA79431C06D5F43E /* Pods_ArtsyAuthenticationExample.framework */; };
+		F0EB8CD5F14FECD0AE25D6A3 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C227FEF1FF31CC4B4D3DE8E /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,8 +138,8 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
-				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Artsy_Authentication */,
+				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,

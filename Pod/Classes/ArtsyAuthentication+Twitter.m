@@ -1,5 +1,6 @@
 #import "ArtsyAuthentication+Twitter.h"
 #import "ArtsyAuthentication+Private.h"
+#import "ArtsyAuthentication+Accounts.h"
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyNetworkOperator.h"
 #import "ArtsyToken.h"
