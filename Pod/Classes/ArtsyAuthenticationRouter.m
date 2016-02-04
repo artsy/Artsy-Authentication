@@ -1,6 +1,13 @@
 #import "ArtsyAuthenticationRouter.h"
 #import "ArtsyToken.h"
+
+#if __has_include(<NSURL+QueryDictionary/NSURL+QueryDictionary.h>)
 #import <NSURL+QueryDictionary/NSURL+QueryDictionary.h>
+#endif
+
+#if __has_include(<NSURL_QueryDictionary/NSURL+QueryDictionary.h>)
+#import <NSURL_QueryDictionary/NSURL+QueryDictionary.h>
+#endif
 
 @interface ArtsyAuthenticationRouter()
 
@@ -32,7 +39,7 @@
     if (self.xappToken) {
         [request setValue:self.xappToken.token forHTTPHeaderField:@"X-Xapp-Token"];
     }
-    
+
     return [request copy];
 }
 
