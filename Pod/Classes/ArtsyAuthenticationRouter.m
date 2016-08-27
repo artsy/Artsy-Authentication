@@ -39,7 +39,10 @@
     if (self.xappToken) {
         [request setValue:self.xappToken.token forHTTPHeaderField:@"X-Xapp-Token"];
     }
-
+    if (self.authToken) {
+        [request setValue:self.authToken.token forHTTPHeaderField:@"X-Access-Token"];
+    }
+    
     return [request copy];
 }
 
@@ -59,6 +62,11 @@
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
     return [self baseRequestForAddress:url];
+}
+
+- (NSURLRequest *)requestForUserDetails;
+{
+    return [self baseRequestForAddress:[self urlWithPath:@"/api/v1/me"]];
 }
 
 - (NSURLRequest *)requestForCreateNewUserwithEmail:(NSString *)email name:(NSString *)name password:(NSString *)password {
@@ -83,7 +91,6 @@
     NSURL *url = [[self urlWithPath:@"/api/v1/user"] uq_URLByAppendingQueryDictionary:params];
     return [self baseRequestForAddress:url method:@"POST"];
 }
-
 
 - (NSURLRequest *)newFacebookOAuthRequestWithToken:(NSString *)facebookToken {
     NSDictionary *params = @{
@@ -138,3 +145,4 @@
 }
 
 @end
+
