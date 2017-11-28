@@ -5,29 +5,29 @@ PODS:
     - ISO8601DateFormatter
     - LVTwitterOAuthClient
     - NSURL+QueryDictionary
-  - ISO8601DateFormatter (0.7)
+  - ISO8601DateFormatter (0.8)
   - Keys (1.0.0)
   - LVTwitterOAuthClient (0.3.0):
     - OAuthCore
-  - Nimble (3.0.0)
+  - Nimble (4.1.0)
   - NSData+Base64 (1.0.0)
-  - NSURL+QueryDictionary (1.1.0)
+  - NSURL+QueryDictionary (1.2.0)
   - OAuthCore (0.0.1):
     - NSData+Base64
-  - OHHTTPStubs (4.6.0):
-    - OHHTTPStubs/Default (= 4.6.0)
-  - OHHTTPStubs/Core (4.6.0)
-  - OHHTTPStubs/Default (4.6.0):
+  - OHHTTPStubs (5.2.0):
+    - OHHTTPStubs/Default (= 5.2.0)
+  - OHHTTPStubs/Core (5.2.0)
+  - OHHTTPStubs/Default (5.2.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.6.0):
+  - OHHTTPStubs/JSON (5.2.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.6.0):
+  - OHHTTPStubs/NSURLSession (5.2.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.6.0)
-  - Quick (0.8.0)
+  - OHHTTPStubs/OHPathHelpers (5.2.0)
+  - Quick (0.9.3)
 
 DEPENDENCIES:
   - Artsy+Authentication (from `../`)
@@ -44,14 +44,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Artsy+Authentication: 3bf11ceca61c52e9e31490535bf5798f625406fa
-  ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   LVTwitterOAuthClient: 058199e43af92c0b99332332fa26d2229c59f04d
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
-  NSURL+QueryDictionary: dd0a5fec689a9b4780b6fa0e0225c01ca3ea653e
+  NSURL+QueryDictionary: bae616404e2adf6409d3d5c02a093cbf44c8a236
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
-  OHHTTPStubs: cb1aefbbeb4de4e741644455d4b945538e5248a2
-  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
+  OHHTTPStubs: 29ae105797c3410112d10b217c8b7a55aab616b2
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
 
 COCOAPODS: 0.39.0
