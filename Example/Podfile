@@ -13,13 +13,14 @@ plugin 'cocoapods-keys',
     ArtsyTwitterSecret
   ]
 
-target 'ArtsyAuthenticationExample'
-pod 'Artsy+Authentication', path: '../'
+target 'ArtsyAuthenticationExample' do 
+  pod 'Artsy+Authentication', path: '../'
 
-target 'Tests' do
-  inherit! :search_paths
+  target 'Tests' do
+    inherit! :search_paths
 
-  pod 'OHHTTPStubs'
-  pod 'Quick'
-  pod 'Nimble'
+    pod 'OHHTTPStubs'
+    pod 'Quick'
+    pod 'Nimble'
+  end
 end
