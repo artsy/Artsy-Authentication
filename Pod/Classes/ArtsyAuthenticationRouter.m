@@ -61,7 +61,7 @@
     };
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
-    return [self baseRequestForAddress:url];
+    return [self baseRequestForAddress:url method:@"POST"];
 }
 
 - (NSURLRequest *)requestForUserDetails;
@@ -103,7 +103,7 @@
     };
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
-    return [self baseRequestForAddress:url];
+    return [self baseRequestForAddress:url method:@"POST"];
 }
 
 - (NSURLRequest *)newTwitterOAuthRequestWithToken:(NSString *)token secret:(NSString *)secret {
@@ -118,7 +118,7 @@
     };
 
     NSURL *url = [[self urlWithPath:@"/oauth2/access_token"] uq_URLByAppendingQueryDictionary:params];
-    return [self baseRequestForAddress:url];
+    return [self baseRequestForAddress:url method:@"POST"];
 }
 
 - (NSURLRequest *)newCreateUserViaTwitterRequestWithToken:(NSString *)token secret:(NSString *)secret email:(NSString *)email name:(NSString *)name {

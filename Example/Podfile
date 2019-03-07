@@ -2,24 +2,24 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-plugin 'cocoapods-keys', {
-    :project => "Artsy_Authentication",
-    :target => "ArtsyAuthenticationExample",
-    :keys => [
-        "ArtsyAPIClientSecret",
-        "ArtsyAPIClientKey",
-        "ArtsyFacebookAppID",
-        "ArtsyTwitterKey",
-        "ArtsyTwitterSecret"
-]}
+plugin 'cocoapods-keys',
+  project: 'Artsy_Authentication',
+  target: 'ArtsyAuthenticationExample',
+  keys: %w[
+    ArtsyAPIClientSecret
+    ArtsyAPIClientKey
+    ArtsyFacebookAppID
+    ArtsyTwitterKey
+    ArtsyTwitterSecret
+  ]
 
-target 'ArtsyAuthenticationExample' do
-  pod "Artsy+Authentication", :path => "../"
-end
+target 'ArtsyAuthenticationExample'
+pod 'Artsy+Authentication', path: '../'
 
-target 'Tests', :exclusive => true do
+target 'Tests' do
+  inherit! :search_paths
+
   pod 'OHHTTPStubs'
-
   pod 'Quick'
   pod 'Nimble'
 end
