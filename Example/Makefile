@@ -1,6 +1,7 @@
 all: install
 
 install:
+	pod repo update
 	pod install
 
 keys:
