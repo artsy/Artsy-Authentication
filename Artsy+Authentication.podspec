@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Artsy+Authentication"
-  s.version          = "1.5.0"
+  s.version          = "1.6.0"
   s.summary          = "Authentication for Artsy Services."
   s.description      = "Authentication for Artsy Cocoa libraries. Yawn, boring."
   s.homepage         = "https://github.com/artsy/Artsy_Authentication"
